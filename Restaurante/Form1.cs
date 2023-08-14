@@ -19,6 +19,9 @@ namespace Restaurante
 
         }
         private Form2 formSecundario;
+        private Proveedores.Proveedores provdiv;   
+        private Clientes.Clientes clidiv;
+        private Ventas.ventas ventdiv;
         private void button1_Click(object sender, EventArgs e)
         {
             //button1.Anchor = AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left;
@@ -50,15 +53,19 @@ namespace Restaurante
 
             // Establecer propiedades del formulario secundario (si es necesario)
 
-            // Mostrar el formulario secundario
-            if (formSecundario == null || formSecundario.IsDisposed)
+            
+
+            if (formSecundario == null || formSecundario.IsDisposed || provdiv == null || provdiv.IsDisposed || ventdiv == null || ventdiv.IsDisposed || provdiv == null || provdiv.IsDisposed)
             {
+                clidiv = new Clientes.Clientes();
+                ventdiv = new Ventas.ventas();
+                provdiv = new Proveedores.Proveedores();
                 formSecundario = new Form2();
                 formSecundario.FormBorderStyle = FormBorderStyle.None;
                 formSecundario.TopLevel = false;
                 formSecundario.TopLevel = false;
                 formSecundario.Dock = DockStyle.Fill;
-                tableLayoutPanel2.Controls.Add(formSecundario);
+                tableLayoutPanel2.Controls.Add(formSecundario);         
                 formSecundario.Show();
             }
             else
@@ -81,15 +88,71 @@ namespace Restaurante
        
         private void button4_Click(object sender, EventArgs e)
         {
+            if (provdiv == null || provdiv.IsDisposed || formSecundario == null || formSecundario.IsDisposed || ventdiv == null || ventdiv.IsDisposed || provdiv == null || provdiv.IsDisposed)
+            {
+                clidiv = new Clientes.Clientes();
+                ventdiv = new Ventas.ventas();
+                formSecundario = new Form2();
+                provdiv = new Proveedores.Proveedores();
+                provdiv.FormBorderStyle = FormBorderStyle.None;
+                provdiv.TopLevel = false;
+                provdiv.TopLevel = false;
+                provdiv.Dock = DockStyle.Fill;
+                tableLayoutPanel2.Controls.Add(provdiv);
+                provdiv.Show();
+            }
+            else
+            {
+                provdiv.BringToFront();
+            }   
             
-            Proveedores.Proveedores provdiv = new Proveedores.Proveedores();
-           
-            provdiv.FormBorderStyle = FormBorderStyle.None;
-            provdiv.TopLevel = false;
-            tableLayoutPanel2.Controls.Add(provdiv);
-            provdiv.Dock = DockStyle.Fill;
-            provdiv.BringToFront();
-            provdiv.Show();
+            
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //programa que el boton vaya a clientes de la misma manera que estan programados los demas botones
+            if (clidiv == null || clidiv.IsDisposed || formSecundario == null || formSecundario.IsDisposed|| ventdiv == null || ventdiv.IsDisposed || provdiv == null || provdiv.IsDisposed)
+            {
+                ventdiv = new Ventas.ventas();
+                provdiv = new Proveedores.Proveedores();
+                formSecundario = new Form2();
+                clidiv = new Clientes.Clientes();
+                clidiv.FormBorderStyle = FormBorderStyle.None;
+                clidiv.TopLevel = false;
+                clidiv.TopLevel = false;
+                clidiv.Dock = DockStyle.Fill;
+                tableLayoutPanel2.Controls.Add(clidiv);
+                clidiv.Show();
+            }
+            else
+            {
+                clidiv.BringToFront();
+            }
+            
+        }
+
+        private void Ventas_Click(object sender, EventArgs e)
+        {
+            //programa que este boton lleve a ventas de la misma manera que los demas botones
+            if (ventdiv == null || ventdiv.IsDisposed || formSecundario == null || formSecundario.IsDisposed || clidiv == null || clidiv.IsDisposed || provdiv == null || provdiv.IsDisposed)
+            {
+                clidiv = new Clientes.Clientes();
+                provdiv = new Proveedores.Proveedores();
+                formSecundario = new Form2();
+                ventdiv = new Ventas.ventas();
+                ventdiv.FormBorderStyle = FormBorderStyle.None;
+                ventdiv.TopLevel = false;
+                ventdiv.TopLevel = false;
+                ventdiv.Dock = DockStyle.Fill;
+                tableLayoutPanel2.Controls.Add(ventdiv);
+                ventdiv.Show();
+            }
+            else
+            {
+                ventdiv.BringToFront();
+            }
         }
     }
 }

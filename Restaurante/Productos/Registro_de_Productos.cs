@@ -9,7 +9,7 @@ namespace Restaurante
     {
         private DataTable dataTable; // Almacena los datos originales
         private DataView dataView;   // Almacena los datos filtrados
-        public string aaaa;
+        
         public Registro_de_Productos()
         {
             InitializeComponent();
@@ -17,6 +17,7 @@ namespace Restaurante
 
         private void Registro_de_Productos_Load(object sender, EventArgs e)
         {
+
             string query2 = "select * from productos";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
@@ -34,47 +35,45 @@ namespace Restaurante
                 cbbus.Items.Add("ID");
                 cbbus.Items.Add("Nombre");
                 cbbus.Items.Add("Proveedor");
-                cbbus.Items.Add("Proveedor");
-                cbbus.Items.Add("Proveedor");
-                cbbus.Items.Add("Proveedor");
                 cbbus.SelectedIndex = 0; // Opción predeterminada
+                //hace que la columna precio se muestre con formato de moneda   
+                dgv1.Columns["precio"].DefaultCellStyle.Format = "c";
+                // hace que el datagridview sea responsivo
+                dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
 
         private void btnbus_Click(object sender, EventArgs e)
         {
-            dgv1.ClearSelection();
-            string searchTerm = txtbus.Text;
+            // Buscar proveedores utilizando el campo seleccionado en el combobox y el texto ingresado en el textbox
+            // compara los resultados del combobox con los campos de la tabla proveedores
             string selectedOption = cbbus.SelectedItem.ToString();
-            
+            string aaaa = "";
 
-                if (selectedOption == "ID")
-                {
-                    aaaa = "id_producto";
-                }
-                else if (selectedOption == "Nombre")
-                {
-                    aaaa = "nombre_producto";
-                }
-                else if (selectedOption == "Proveedor")
-                {
-                    aaaa = "proveedor";
-                }
-            
-            string aaa = aaaa.ToString();
-            string busqueda = txtbus.Text.ToString();
-            string query2 = "select * from productos WHERE " + aaa + " = " + busqueda;
+            if (selectedOption == "ID")
+            {
+                aaaa = "id_producto";
+            }
+            else if (selectedOption == "Nombre")
+            {
+                aaaa = "nombre_producto";
+            }
+            else if (selectedOption == "Proveedor")
+            {
+                aaaa = "proveedor";
+            }
+            string query = "select * from productos where " + aaaa + " like '%" + txtbus.Text + "%'";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
-
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(query2, conexion);
-                dataTable = new DataTable();
-
+                conexion.Open();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, conexion);
+                DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
-
                 dgv1.DataSource = dataTable;
-
             }
+
+
+
         }
 
         private void btneditar_Click(object sender, EventArgs e)

@@ -32,6 +32,10 @@ namespace Restaurante
                 dataAdapter.Fill(dataTable);
 
                 dataGridView1.DataSource = dataTable;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                //hace que la columna precio se muestre con formato de moneda
+                dataGridView1.Columns["precio"].DefaultCellStyle.Format = "c";
+
             }
         }
 

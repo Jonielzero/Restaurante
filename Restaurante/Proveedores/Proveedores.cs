@@ -72,6 +72,7 @@ namespace Restaurante.Proveedores
                 dataAdapter.Fill(dataTable);
 
                 dataGridView1.DataSource = dataTable;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
         private void Proveedores_Load(object sender, EventArgs e)
@@ -103,6 +104,12 @@ namespace Restaurante.Proveedores
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Registro_proveedores reg = new Registro_proveedores();
+            reg.Show();
         }
     }
 }

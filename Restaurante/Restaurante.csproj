@@ -50,6 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clientes\Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\Clientes.Designer.cs">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\Editar_clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\Editar_clientes.Designer.cs">
+      <DependentUpon>Editar_clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\registro_clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\registro_clientes.Designer.cs">
+      <DependentUpon>registro_clientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Productos\editarproducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,12 +94,39 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedores\edicion_proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedores\edicion_proveedores.Designer.cs">
+      <DependentUpon>edicion_proveedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Proveedores\Proveedores.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Proveedores\Proveedores.Designer.cs">
       <DependentUpon>Proveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="Proveedores\Registro_proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedores\Registro_proveedores.Designer.cs">
+      <DependentUpon>Registro_proveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\registro_ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\registro_ventas.Designer.cs">
+      <DependentUpon>registro_ventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\ventas.Designer.cs">
+      <DependentUpon>ventas.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Clientes\Clientes.resx">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Productos\editarproducto.resx">
       <DependentUpon>editarproducto.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,8 +149,14 @@
     <EmbeddedResource Include="Productos\Registro_de_Productos.resx">
       <DependentUpon>Registro_de_Productos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Proveedores\edicion_proveedores.resx">
+      <DependentUpon>edicion_proveedores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Proveedores\Proveedores.resx">
       <DependentUpon>Proveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proveedores\Registro_proveedores.resx">
+      <DependentUpon>Registro_proveedores.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Form1.datasource" />

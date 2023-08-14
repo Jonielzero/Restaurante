@@ -120,8 +120,7 @@ namespace Restaurante
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtid.Text); // Obtener el ID del TextBox (asegúrate de manejar la conversión correctamente)
-
+            int id = int.Parse(txtid.Text); 
             
             string query = "DELETE FROM Productos WHERE id_producto = @ID";
 
@@ -145,6 +144,11 @@ namespace Restaurante
                     }
                 }
             }
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
