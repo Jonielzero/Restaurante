@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurante.Proveedores;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,9 @@ namespace Restaurante
         public Form1()
         {
             InitializeComponent();
-        }
 
+        }
+        private Form2 formSecundario;
         private void button1_Click(object sender, EventArgs e)
         {
             //button1.Anchor = AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left;
@@ -28,28 +30,41 @@ namespace Restaurante
             // segundaVentana.Show();
 
             // Crear una instancia del formulario secundario
-            Form2 formSecundario = new Form2();
-            formSecundario.FormBorderStyle = FormBorderStyle.None;
+           // Form2 formSecundario = new Form2
+           // {
+                //,
 
-            // Mostrar el formulario secundario como formulario hijo del formulario principal
-            // formSecundario.MdiParent = this; // Establece el formulario principal como el contenedor
-            // formSecundario.Show();
-            // Agregar el formulario secundario como control secundario del TableLayoutPanel
-            // Crear un Panel para contener el formulario secundario
-            formSecundario.TopLevel = false;
-           // Panel panelContenedor = new Panel();
-           // panelContenedor.Dock = DockStyle.Fill;
-           // panelContenedor.Controls.Add(formSecundario);
+                // Mostrar el formulario secundario como formulario hijo del formulario principal
+                // formSecundario.MdiParent = this; // Establece el formulario principal como el contenedor
+                // formSecundario.Show();
+                // Agregar el formulario secundario como control secundario del TableLayoutPanel
+                // Crear un Panel para contener el formulario secundario
+                //
+            //};
+            // Panel panelContenedor = new Panel();
+            // panelContenedor.Dock = DockStyle.Fill;
+            // panelContenedor.Controls.Add(formSecundario);
 
             // Agregar el Panel al TableLayoutPanel
-            tableLayoutPanel2.Controls.Add(formSecundario);
-            
+
+
             // Establecer propiedades del formulario secundario (si es necesario)
-            formSecundario.Dock = DockStyle.Fill; // Por ejemplo, ajusta el formulario al tamaño del TableLayoutPanel
-            formSecundario.BringToFront(); // Asegura que el formulario esté en la parte superior
 
             // Mostrar el formulario secundario
-            formSecundario.Show();
+            if (formSecundario == null || formSecundario.IsDisposed)
+            {
+                formSecundario = new Form2();
+                formSecundario.FormBorderStyle = FormBorderStyle.None;
+                formSecundario.TopLevel = false;
+                formSecundario.TopLevel = false;
+                formSecundario.Dock = DockStyle.Fill;
+                tableLayoutPanel2.Controls.Add(formSecundario);
+                formSecundario.Show();
+            }
+            else
+            {
+                formSecundario.BringToFront();
+            }
 
 
         }
@@ -62,6 +77,19 @@ namespace Restaurante
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
             //tableLayoutPanel1.Dock = DockStyle.Fill;
+        }
+       
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            Proveedores.Proveedores provdiv = new Proveedores.Proveedores();
+           
+            provdiv.FormBorderStyle = FormBorderStyle.None;
+            provdiv.TopLevel = false;
+            tableLayoutPanel2.Controls.Add(provdiv);
+            provdiv.Dock = DockStyle.Fill;
+            provdiv.BringToFront();
+            provdiv.Show();
         }
     }
 }

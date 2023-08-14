@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurante.Proveedores;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -40,5 +41,6 @@ namespace Restaurante
 
             
         }
+         
     }
 }

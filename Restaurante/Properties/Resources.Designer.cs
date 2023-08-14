@@ -69,5 +69,15 @@ namespace Restaurante.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2023_08_14_at_10_40_32 {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2023-08-14 at 10.40.32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
