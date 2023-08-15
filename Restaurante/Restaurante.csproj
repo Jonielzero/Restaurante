@@ -127,6 +127,12 @@
     <EmbeddedResource Include="Clientes\Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\Editar_clientes.resx">
+      <DependentUpon>Editar_clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\registro_clientes.resx">
+      <DependentUpon>registro_clientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Productos\editarproducto.resx">
       <DependentUpon>editarproducto.cs</DependentUpon>
     </EmbeddedResource>

@@ -25,7 +25,7 @@ namespace Restaurante.Clientes
             string apellido = txtapellido.Text;
             string direccion = txtdireccion.Text;
             int telefono = int.Parse(txttelefono.Text);
-            int rtn = int.Parse(txtrtn.Text);
+            int rtn = int.Parse(txtrtn.Text)/10;
             // ingresa estos datos en la tabla clientes
             string query = "INSERT INTO clientes (nombre, apellido, direccion, telefono, rtn)" +
                             "VALUES (@nombre, @apellido, @direccion, @telefono, @rtn)";
@@ -43,6 +43,36 @@ namespace Restaurante.Clientes
                     //ejecuta la coneccion
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Nuevo Cliente agregado con éxito.");
+                }
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            registro_clientes registro = new registro_clientes();
+            registro.Show();
+        }
+
+        private void Clientes_Load(object sender, EventArgs e)
+        {
+            //aqui se cargan los datos de la tabla clientes en el datagridview
+            string query = "SELECT * FROM clientes";
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                conexion.Open();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, conexion))
+                {
+                    DataTable tabla = new DataTable();
+                    adapter.Fill(tabla);
+                    dataGridView1.DataSource = tabla;
+                    //datagridview responsivo
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
             }
 
