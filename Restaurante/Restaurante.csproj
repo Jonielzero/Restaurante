@@ -164,6 +164,9 @@
     <EmbeddedResource Include="Proveedores\Registro_proveedores.resx">
       <DependentUpon>Registro_proveedores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\ventas.resx">
+      <DependentUpon>ventas.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Form1.datasource" />
     <None Include="Properties\DataSources\Form2.datasource" />

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Ventas = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnclientes = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.productos = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -66,18 +66,18 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button1
+            // btnclientes
             // 
-            this.button1.BackColor = System.Drawing.Color.Ivory;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(396, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 55);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Clientes";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnclientes.BackColor = System.Drawing.Color.Ivory;
+            this.btnclientes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnclientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclientes.Location = new System.Drawing.Point(396, 3);
+            this.btnclientes.Name = "btnclientes";
+            this.btnclientes.Size = new System.Drawing.Size(195, 55);
+            this.btnclientes.TabIndex = 4;
+            this.btnclientes.Text = "Clientes";
+            this.btnclientes.UseVisualStyleBackColor = false;
+            this.btnclientes.Click += new System.EventHandler(this.btnclientes_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -87,7 +87,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.375F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.button4, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnclientes, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.Ventas, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.productos, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -155,7 +155,7 @@
         private System.Windows.Forms.Button productos;
         private System.Windows.Forms.Button Ventas;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnclientes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }

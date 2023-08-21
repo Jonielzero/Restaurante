@@ -55,7 +55,7 @@ namespace Restaurante
 
             
 
-            if (formSecundario == null || formSecundario.IsDisposed || provdiv == null || provdiv.IsDisposed || ventdiv == null || ventdiv.IsDisposed || provdiv == null || provdiv.IsDisposed)
+            if (formSecundario == null || formSecundario.IsDisposed || provdiv == null || provdiv.IsDisposed || ventdiv == null || ventdiv.IsDisposed || clidiv == null || clidiv.IsDisposed)
             {
                 clidiv = new Clientes.Clientes();
                 ventdiv = new Ventas.ventas();
@@ -88,7 +88,7 @@ namespace Restaurante
        
         private void button4_Click(object sender, EventArgs e)
         {
-            if (provdiv == null || provdiv.IsDisposed || formSecundario == null || formSecundario.IsDisposed || ventdiv == null || ventdiv.IsDisposed || provdiv == null || provdiv.IsDisposed)
+            if (provdiv == null || provdiv.IsDisposed || formSecundario == null || formSecundario.IsDisposed || ventdiv == null || ventdiv.IsDisposed || clidiv == null || clidiv.IsDisposed)
             {
                 clidiv = new Clientes.Clientes();
                 ventdiv = new Ventas.ventas();
@@ -110,7 +110,7 @@ namespace Restaurante
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btnclientes_Click(object sender, EventArgs e)
         {
             //programa que el boton vaya a clientes de la misma manera que estan programados los demas botones
             if (clidiv == null || clidiv.IsDisposed || formSecundario == null || formSecundario.IsDisposed|| ventdiv == null || ventdiv.IsDisposed || provdiv == null || provdiv.IsDisposed)

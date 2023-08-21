@@ -52,7 +52,7 @@ namespace Restaurante
 
             if (string.IsNullOrWhiteSpace(txtnombre.Text) || cantidad == 0 || precio == 0)
             {
-                MessageBox.Show("el campo nombre no puede estar en blanco");
+                MessageBox.Show("el campo nombre no puede estar en blanco y la cantidad o precio no pueden ser 0");
             }
             else
             {

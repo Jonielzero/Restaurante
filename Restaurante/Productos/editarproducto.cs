@@ -35,6 +35,10 @@ namespace Restaurante
             int id = int.Parse(txtid.Text);
             Proveedores proveedorid = (Proveedores)cbproveedores.SelectedItem;
             string nombre = txtnombre.Text;
+            if (string.IsNullOrEmpty(txtprecio.Text)){
+                MessageBox.Show("el campo nombre no puede estar en blanco");
+                return;
+            }
             decimal precio = decimal.Parse(txtprecio.Text);
             int cantidad = int.Parse(txtcantidad.Text);
             DateTime fechaelaboracion = dtpelaboracion.Value;
