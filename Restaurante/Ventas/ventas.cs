@@ -29,32 +29,131 @@ namespace Restaurante.Ventas
                 dataAdapter.Fill(dataTable);
 
                 dataGridView1.DataSource = dataTable;
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                //hace que la columna precio se muestre con formato de moneda
                 dataGridView1.Columns["precio"].DefaultCellStyle.Format = "c";
                 dataGridView1.Columns["total"].DefaultCellStyle.Format = "c";
-                //dale formato fecha y hora a la columna fechaventa
                 dataGridView1.Columns["fechaventa"].DefaultCellStyle.Format = "dd/MM/yyyy hh:mm:ss";
-                dataGridView1.Columns["idventas"].HeaderText = "ID";
-                dataGridView1.Columns["idproductos"].HeaderText = "Producto";
-                dataGridView1.Columns["id_clientes"].HeaderText = "ID Cliente";
+                dataGridView1.Columns["idventas"].HeaderText = "ID de la Venta";
+                dataGridView1.Columns["id_clientes"].HeaderText = "ID del Cliente";
                 dataGridView1.Columns["fechaventa"].HeaderText = "Fecha de venta";
                 dataGridView1.Columns["cantidad"].HeaderText = "Cantidad";
                 dataGridView1.Columns["precio"].HeaderText = "Precio";
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridView1.Columns["descripcionventa"].HeaderText = "Descripción";
                 dataGridView1.Columns["total"].HeaderText = "Total";
 
             }
+        }
+        public class Venta
+        {
+            public string Producto { get; set; }
+            public int IDProducto { get; set; }
+            public int IDCliente { get; set; }
+            public DateTime Fecha { get; set; }
+            public int Cantidad { get; set; }
+            public decimal Precio { get; set; }
+            public string Descripcion { get; set; }
+            public decimal Total { get; set; }
         }
         private class getProductos
         {
             public int ID { get; set; }
             public string Nombre { get; set; }
         }
+
         private class getClientes
         {
             public int ID { get; set; }
             public string Nombre { get; set; }
+        }
+        private List<Venta> ventasTemporales = new List<Venta>();
+        private void AgregarVenta(int idProducto, int idCliente, int cantidad, decimal precio, string descripcion, decimal total)
+        {
+            string nombreProducto = ObtenerNombreProducto(idProducto);
+            Venta venta = new Venta
+            {
+                Producto = nombreProducto,
+                IDProducto = idProducto,
+                IDCliente = idCliente,
+                Fecha = DateTime.Now,
+                Cantidad = cantidad,
+                Precio = precio,
+                Descripcion = descripcion,
+                Total = total
+            };
+
+            ventasTemporales.Add(venta);
+            MostrarVentasEnGridView();
+        }
+
+        private string ObtenerNombreProducto(int idProducto)
+        {
+            string nombreProducto = "";
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                string query = "select nombre_producto from productos where id_producto = @idProducto";
+                conexion.Open();
+                using (SqlCommand command = new SqlCommand(query, conexion))
+                {
+                    command.Parameters.AddWithValue("@idProducto", idProducto);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        nombreProducto = reader["nombre_producto"].ToString();
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return nombreProducto;
+            
+        }
+
+        private void MostrarVentasEnGridView()
+        {
+            dataGridViewVentas.DataSource = null;
+            dataGridViewVentas.DataSource = ventasTemporales;
+            dataGridViewVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //Haz que en la columna idproducto se muestre el nombre del producto mostrado en el combobox
+            dataGridViewVentas.Columns["IDProducto"].Visible = false;
+            dataGridViewVentas.Columns["IDCliente"].Visible = false;
+            dataGridViewVentas.Columns["Fecha"].Visible = false;
+            dataGridViewVentas.Columns["Precio"].DefaultCellStyle.Format = "c";
+            dataGridViewVentas.Columns["Total"].DefaultCellStyle.Format = "c";
+        }
+        private void EfectuarVenta()
+        {
+            
+            foreach (Venta venta in ventasTemporales)
+            {
+                string query = "INSERT INTO Ventas (idproductos, id_clientes, Fechaventa, cantidad, precio, descripcionventa, total) " +
+                               "VALUES (@IDProducto, @IDCliente, @Fecha, @Cantidad, @Precio, @Descripcion, @Total)";
+
+                using (SqlConnection connection = new SqlConnection(Program.connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IDProducto", venta.IDProducto);
+                    command.Parameters.AddWithValue("@IDCliente", venta.IDCliente);
+                    command.Parameters.AddWithValue("@Fecha", venta.Fecha);
+                    command.Parameters.AddWithValue("@Cantidad", venta.Cantidad);
+                    command.Parameters.AddWithValue("@Precio", venta.Precio);
+                    command.Parameters.AddWithValue("@Descripcion", venta.Descripcion);
+                    command.Parameters.AddWithValue("@Total", venta.Total);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            MessageBox.Show("Venta efectuada correctamente.");
+            LimpiarVenta();
+        }
+
+        private void LimpiarVenta()
+        {
+            ventasTemporales.Clear();
+            MostrarVentasEnGridView();
         }
         private void ventas_Load(object sender, EventArgs e)
         {
@@ -113,35 +212,17 @@ namespace Restaurante.Ventas
         {
             int idProducto = ((getProductos)cbproducto.SelectedItem).ID;
             int idCliente = ((getClientes)cbcliente.SelectedItem).ID;
-            DateTime fechaVenta = DateTime.Now;
             int cantidad = Convert.ToInt32(txtcantidad.Text);
             decimal precio = Convert.ToDecimal(txtprecio.Text);
             string descripcion = txtdescripcion.Text;
             decimal total = cantidad * precio;
-            string query = "insert into ventas (idproductos, id_clientes, fechaventa, cantidad, precio, descripcionventa, total) values (@idProducto, @idCliente, @fechaVenta, @cantidad, @precio, @descripcion, @total)";
-
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            AgregarVenta(idProducto, idCliente, cantidad, precio, descripcion, total);
+            decimal totalVenta = 0;
+            foreach (Venta venta in ventasTemporales)
             {
-                conexion.Open();
-                using (SqlCommand command = new SqlCommand(query, conexion))
-                {
-                    command.Parameters.AddWithValue("@idProducto", idProducto);
-                    command.Parameters.AddWithValue("@idCliente", idCliente);
-                    command.Parameters.AddWithValue("@fechaVenta", fechaVenta);
-                    command.Parameters.AddWithValue("@cantidad", cantidad);
-                    command.Parameters.AddWithValue("@precio", precio);
-                    command.Parameters.AddWithValue("@descripcion", descripcion);
-                    command.Parameters.AddWithValue("@total", total);
+                totalVenta += venta.Total;
+                lvtotal.Text = totalVenta.ToString("C");
 
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Venta registrada con éxito", "Venta registrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    cbproducto.SelectedIndex = -1;
-                    cbcliente.SelectedIndex = -1;
-                    txtcantidad.Clear();
-                    txtprecio.Clear();
-                    txtdescripcion.Clear();
-                }
             }
         }
 
@@ -232,6 +313,12 @@ namespace Restaurante.Ventas
             txtcantidad.Clear();
             txtprecio.Clear();
             txtdescripcion.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EfectuarVenta();
+            LimpiarVenta();
         }
     }
 }
