@@ -20,7 +20,11 @@ namespace Restaurante.Ventas
         private DataTable dataTable;
         private void CargarDatos()
         {
-            string query2 = "select * from ventas ORDER BY idventas DESC";
+            string query2 = "SELECT v.idventas, p.nombre_producto, c.nombre cliente, v.fechaventa, v.precio, " +
+                "v.cantidad, v.descripcionventa, v.total FROM Ventas v " +
+                "JOIN productos p on v.idproductos = p.id_producto " +
+                "JOIN clientes c on v.id_clientes = c.idclientes  "+
+                "WHERE v.fechaventa BETWEEN CONVERT(DATE, GETDATE()) AND GETDATE() ORDER BY idventas DESC";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(query2, conexion);
@@ -29,22 +33,23 @@ namespace Restaurante.Ventas
                 dataAdapter.Fill(dataTable);
 
                 dataGridView1.DataSource = dataTable;
-                dataGridView1.Columns["precio"].DefaultCellStyle.Format = "c";
-                dataGridView1.Columns["total"].DefaultCellStyle.Format = "c";
                 dataGridView1.Columns["fechaventa"].DefaultCellStyle.Format = "dd/MM/yyyy hh:mm:ss";
                 dataGridView1.Columns["idventas"].HeaderText = "ID de la Venta";
-                dataGridView1.Columns["id_clientes"].HeaderText = "ID del Cliente";
+                dataGridView1.Columns["cliente"].HeaderText = "Cliente";
                 dataGridView1.Columns["fechaventa"].HeaderText = "Fecha de venta";
                 dataGridView1.Columns["cantidad"].HeaderText = "Cantidad";
                 dataGridView1.Columns["precio"].HeaderText = "Precio";
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridView1.Columns["descripcionventa"].HeaderText = "Descripción";
                 dataGridView1.Columns["total"].HeaderText = "Total";
-
+                dataGridView1.Columns["nombre_producto"].HeaderText = "Producto";
+                dataGridView1.Columns["precio"].DefaultCellStyle.Format = "C";
+                dataGridView1.Columns["idventas"].DefaultCellStyle.Format = "C";
             }
         }
         public class Venta
         {
+            public int Id { get; set; }
             public string Producto { get; set; }
             public int IDProducto { get; set; }
             public int IDCliente { get; set; }
@@ -65,12 +70,13 @@ namespace Restaurante.Ventas
             public int ID { get; set; }
             public string Nombre { get; set; }
         }
-        private List<Venta> ventasTemporales = new List<Venta>();
+        private BindingList<Venta> ventasTemporales = new BindingList<Venta>();
         private void AgregarVenta(int idProducto, int idCliente, int cantidad, decimal precio, string descripcion, decimal total)
         {
             string nombreProducto = ObtenerNombreProducto(idProducto);
             Venta venta = new Venta
             {
+                Id = ventasTemporales.Count + 1,
                 Producto = nombreProducto,
                 IDProducto = idProducto,
                 IDCliente = idCliente,
@@ -201,6 +207,7 @@ namespace Restaurante.Ventas
             cbproducto.ValueMember = "ID";
             cbcliente.DisplayMember = "Nombre";
             cbcliente.ValueMember = "ID";
+            cbcliente.SelectedIndex = 0;
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
@@ -208,8 +215,37 @@ namespace Restaurante.Ventas
             this.Close();
         }
 
-        private void btnaceptar_Click(object sender, EventArgs e)
+        private bool ValidarCampos()
         {
+            if (cbproducto.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione un producto.");
+                return false;
+            }
+            if (cbcliente.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione un cliente.");
+                return false;
+            }
+            if (txtprecio.Text == "")
+            {
+                MessageBox.Show("Ingrese un precio.");
+                return false;
+            }
+            if (txtcantidad.Text == "")
+            {
+                MessageBox.Show("Ingrese una cantidad.");
+                return false;
+            }
+            return true;
+        }
+
+        private void AgregarProducto()
+        {
+            if (!ValidarCampos())
+            {
+                return;
+            }
             int idProducto = ((getProductos)cbproducto.SelectedItem).ID;
             int idCliente = ((getClientes)cbcliente.SelectedItem).ID;
             int cantidad = Convert.ToInt32(txtcantidad.Text);
@@ -224,6 +260,12 @@ namespace Restaurante.Ventas
                 lvtotal.Text = totalVenta.ToString("C");
 
             }
+            
+        }
+
+        private void btnaceptar_Click(object sender, EventArgs e)
+        {
+            AgregarProducto();
         }
 
         private void txtprecio_KeyPress(object sender, KeyPressEventArgs e)
@@ -253,7 +295,10 @@ namespace Restaurante.Ventas
             {
                 e.Handled = false;
             }
-            
+            else if (e.KeyChar == (char)Keys.Enter)
+            {
+                AgregarProducto();
+            }
             else if (char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
@@ -278,6 +323,7 @@ namespace Restaurante.Ventas
             
         }
 
+
         private void cbproducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //buscar a medida se escribe en el combo box
@@ -301,24 +347,84 @@ namespace Restaurante.Ventas
 
         }
 
+        private void EliminarLinea()
+        {
+
+            if (dataGridViewVentas.SelectedRows.Count > 0)
+            {
+                int index = dataGridViewVentas.SelectedRows[0].Index;
+
+                dataGridViewVentas.Rows.RemoveAt(index);
+                decimal totalVenta = 0;
+                if (!ventasTemporales.Any())
+                {
+                    lvtotal.Text = "0";
+                }
+                foreach (Venta venta in ventasTemporales)
+                {
+                    totalVenta += venta.Total;
+                    lvtotal.Text = totalVenta.ToString("C");
+
+                }
+
+            }
+
+        }
         private void cbcliente_Click(object sender, EventArgs e)
         {
             cbcliente.DroppedDown = true;
         }
+        private void limpiarCampos()
+        {
+            cbproducto.SelectedIndex = -1;
+            cbcliente.SelectedIndex = 0;
+            txtprecio.Text = "";
+            txtcantidad.Text = "";
+            txtdescripcion.Text = "";
+        }
 
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
-            cbproducto.SelectedIndex = -1;
-            cbcliente.SelectedIndex = -1;
-            txtcantidad.Clear();
-            txtprecio.Clear();
-            txtdescripcion.Clear();
+            DialogResult result;
+            result = MessageBox.Show("Desea eliminar el producto de la lista?", "ELIMINAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                EliminarLinea();
+                MessageBox.Show("Producto eliminado de la lista.");
+
+            }
+           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             EfectuarVenta();
             LimpiarVenta();
+        }
+
+
+        private void dataGridViewVentas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void cbcliente_TextChanged(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void cbproducto_TextChanged(object sender, EventArgs e)
+        {
+          
+
+        }
+
+        private void btnregistro_Click(object sender, EventArgs e)
+        {
+            registro_ventas registro = new registro_ventas();
+            registro.Show();
         }
     }
 }
