@@ -41,9 +41,11 @@
             // 
             // Ventas
             // 
-            this.Ventas.BackColor = System.Drawing.Color.Ivory;
+            this.Ventas.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.Ventas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Ventas.FlatAppearance.BorderSize = 0;
             this.Ventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Ventas.ForeColor = System.Drawing.SystemColors.Window;
             this.Ventas.Location = new System.Drawing.Point(3, 3);
             this.Ventas.Name = "Ventas";
             this.Ventas.Size = new System.Drawing.Size(192, 55);
@@ -54,10 +56,11 @@
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.Ivory;
+            this.button4.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button4.Location = new System.Drawing.Point(597, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(194, 55);
@@ -68,9 +71,11 @@
             // 
             // btnclientes
             // 
-            this.btnclientes.BackColor = System.Drawing.Color.Ivory;
+            this.btnclientes.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.btnclientes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnclientes.FlatAppearance.BorderSize = 0;
             this.btnclientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclientes.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.btnclientes.Location = new System.Drawing.Point(396, 3);
             this.btnclientes.Name = "btnclientes";
             this.btnclientes.Size = new System.Drawing.Size(195, 55);
@@ -102,10 +107,12 @@
             // 
             // productos
             // 
-            this.productos.BackColor = System.Drawing.Color.Ivory;
+            this.productos.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.productos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.productos.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.productos.FlatAppearance.BorderSize = 0;
             this.productos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.productos.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.productos.ImageKey = "(none)";
             this.productos.Location = new System.Drawing.Point(201, 3);
             this.productos.Name = "productos";

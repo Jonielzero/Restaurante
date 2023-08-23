@@ -20,12 +20,17 @@ namespace Restaurante.Clientes
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(txtnombre.Text == "" || txtapellido.Text == "" || txttelefono.Text == "" )
+            {
+                MessageBox.Show("Por favor llene todos los campos.");
+                return;
+            }
             //programa el boton para que ingrese los registros de los textbox a la tabla Clientes
             string nombre = txtnombre.Text; 
             string apellido = txtapellido.Text;
             string direccion = txtdireccion.Text;
             int telefono = int.Parse(txttelefono.Text);
-            int rtn = int.Parse(txtrtn.Text)/10;
+            string rtn = txtrtn.Text;
             // ingresa estos datos en la tabla clientes
             string query = "INSERT INTO clientes (nombre, apellido, direccion, telefono, rtn)" +
                             "VALUES (@nombre, @apellido, @direccion, @telefono, @rtn)";
@@ -76,6 +81,63 @@ namespace Restaurante.Clientes
                 }
             }
 
+        }
+
+        private void txttelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //valida que solo se ingresen numeros en el textbox de telefono
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar)) 
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar)) 
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+            //valida que no se ingresen mas de 8 numeros en el textbox de telefono
+            if (txttelefono.Text.Length == 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtrtn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // valida que solo se ingresen numeros en el textbox de rtn
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

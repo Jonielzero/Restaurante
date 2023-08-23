@@ -46,6 +46,10 @@ namespace Restaurante.Ventas
                 dataGridView1.Columns["precio"].DefaultCellStyle.Format = "C";
                 dataGridView1.Columns["idventas"].DefaultCellStyle.Format = "C";
             }
+            cbproducto.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbproducto.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbcliente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbcliente.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
         public class Venta
         {
@@ -130,30 +134,63 @@ namespace Restaurante.Ventas
         }
         private void EfectuarVenta()
         {
-            
+
             foreach (Venta venta in ventasTemporales)
             {
                 string query = "INSERT INTO Ventas (idproductos, id_clientes, Fechaventa, cantidad, precio, descripcionventa, total) " +
                                "VALUES (@IDProducto, @IDCliente, @Fecha, @Cantidad, @Precio, @Descripcion, @Total)";
 
-                using (SqlConnection connection = new SqlConnection(Program.connectionString))
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
                 {
-                    command.Parameters.AddWithValue("@IDProducto", venta.IDProducto);
-                    command.Parameters.AddWithValue("@IDCliente", venta.IDCliente);
-                    command.Parameters.AddWithValue("@Fecha", venta.Fecha);
-                    command.Parameters.AddWithValue("@Cantidad", venta.Cantidad);
-                    command.Parameters.AddWithValue("@Precio", venta.Precio);
-                    command.Parameters.AddWithValue("@Descripcion", venta.Descripcion);
-                    command.Parameters.AddWithValue("@Total", venta.Total);
+                    conexion.Open();
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@IDProducto", venta.IDProducto);
+                        command.Parameters.AddWithValue("@IDCliente", venta.IDCliente);
+                        command.Parameters.AddWithValue("@Fecha", venta.Fecha);
+                        command.Parameters.AddWithValue("@Cantidad", venta.Cantidad);
+                        command.Parameters.AddWithValue("@Precio", venta.Precio);
+                        command.Parameters.AddWithValue("@Descripcion", venta.Descripcion);
+                        command.Parameters.AddWithValue("@Total", venta.Total);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                        
+                        command.ExecuteNonQuery();
+                    }
+                    string query2 = "UPDATE productos " +
+                                "SET cantidad = cantidad - @agregar " +
+                                "WHERE id_producto = @nombre";
+
+                    using (SqlCommand cmd = new SqlCommand(query2, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", venta.IDProducto);
+                        cmd.Parameters.AddWithValue("@agregar", venta.Cantidad);
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    //advierte que el producto esta por agotarse
+                    string query3 = "select cantidad from productos where id_producto = @idProducto";
+                    using (SqlCommand cmd = new SqlCommand(query3, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@idProducto", venta.IDProducto);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int cantidad = (int)reader["cantidad"];
+                            if (cantidad <= 0)
+                            {
+                                MessageBox.Show("El producto " + venta.Producto + " esta por agotarse, solo quedan " + cantidad + " unidades.");
+                            }
+                        }
+                        reader.Close();
+                    }
                 }
             }
 
             MessageBox.Show("Venta efectuada correctamente.");
             LimpiarVenta();
+            dataTable.Clear();
+            CargarDatos();
+            lvtotal.Text = "L0.00";
         }
 
         private void LimpiarVenta()
@@ -260,6 +297,7 @@ namespace Restaurante.Ventas
                 lvtotal.Text = totalVenta.ToString("C");
 
             }
+            dataGridViewVentas.ReadOnly = true;
             
         }
 

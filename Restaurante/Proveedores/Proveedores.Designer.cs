@@ -52,9 +52,10 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Control;
+            this.button2.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.ForeColor = System.Drawing.SystemColors.Window;
             this.button2.Location = new System.Drawing.Point(577, 207);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(129, 28);
@@ -73,7 +74,7 @@
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.NullValue = null;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
@@ -127,15 +128,20 @@
             // 
             // txttelefono
             // 
+            this.txttelefono.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txttelefono.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txttelefono.ForeColor = System.Drawing.SystemColors.Window;
             this.txttelefono.Location = new System.Drawing.Point(167, 71);
             this.txttelefono.Name = "txttelefono";
             this.txttelefono.Size = new System.Drawing.Size(404, 20);
             this.txttelefono.TabIndex = 10;
+            this.txttelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefono_KeyPress);
             // 
             // txtcontacto
             // 
+            this.txtcontacto.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtcontacto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtcontacto.ForeColor = System.Drawing.SystemColors.Window;
             this.txtcontacto.Location = new System.Drawing.Point(167, 37);
             this.txtcontacto.Name = "txtcontacto";
             this.txtcontacto.Size = new System.Drawing.Size(404, 20);
@@ -143,10 +149,11 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.ForeColor = System.Drawing.SystemColors.Window;
             this.button1.Location = new System.Drawing.Point(577, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 28);
@@ -167,7 +174,9 @@
             // 
             // txtproveedores
             // 
+            this.txtproveedores.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtproveedores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtproveedores.ForeColor = System.Drawing.SystemColors.Window;
             this.txtproveedores.Location = new System.Drawing.Point(167, 3);
             this.txtproveedores.Name = "txtproveedores";
             this.txtproveedores.Size = new System.Drawing.Size(404, 20);
@@ -175,10 +184,11 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Control;
+            this.button3.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button3.ForeColor = System.Drawing.SystemColors.Window;
             this.button3.Location = new System.Drawing.Point(577, 139);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(129, 28);
@@ -239,7 +249,9 @@
             // 
             // txtemail
             // 
+            this.txtemail.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtemail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtemail.ForeColor = System.Drawing.SystemColors.Window;
             this.txtemail.Location = new System.Drawing.Point(167, 105);
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(404, 20);
@@ -247,7 +259,9 @@
             // 
             // txtdireccion
             // 
+            this.txtdireccion.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtdireccion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtdireccion.ForeColor = System.Drawing.SystemColors.Window;
             this.txtdireccion.Location = new System.Drawing.Point(167, 139);
             this.txtdireccion.Name = "txtdireccion";
             this.txtdireccion.Size = new System.Drawing.Size(404, 20);
@@ -256,12 +270,14 @@
             // checkdisp
             // 
             this.checkdisp.AutoSize = true;
+            this.checkdisp.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.checkdisp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkdisp.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.checkdisp.Location = new System.Drawing.Point(167, 173);
             this.checkdisp.Name = "checkdisp";
             this.checkdisp.Size = new System.Drawing.Size(404, 28);
             this.checkdisp.TabIndex = 22;
-            this.checkdisp.UseVisualStyleBackColor = true;
+            this.checkdisp.UseVisualStyleBackColor = false;
             // 
             // Proveedores
             // 

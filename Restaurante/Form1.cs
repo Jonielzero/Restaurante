@@ -1,4 +1,5 @@
-﻿using Restaurante.Proveedores;
+﻿using Restaurante.Productos;
+using Restaurante.Proveedores;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace Restaurante
             InitializeComponent();
 
         }
-        private Form2 formSecundario;
+        private agregarproducto formSecundario;
         private Proveedores.Proveedores provdiv;   
         private Clientes.Clientes clidiv;
         private Ventas.ventas ventdiv;
@@ -60,7 +61,7 @@ namespace Restaurante
                 clidiv = new Clientes.Clientes();
                 ventdiv = new Ventas.ventas();
                 provdiv = new Proveedores.Proveedores();
-                formSecundario = new Form2();
+                formSecundario = new agregarproducto();
                 formSecundario.FormBorderStyle = FormBorderStyle.None;
                 formSecundario.TopLevel = false;
                 formSecundario.TopLevel = false;
@@ -92,7 +93,7 @@ namespace Restaurante
             {
                 clidiv = new Clientes.Clientes();
                 ventdiv = new Ventas.ventas();
-                formSecundario = new Form2();
+                formSecundario = new agregarproducto();
                 provdiv = new Proveedores.Proveedores();
                 provdiv.FormBorderStyle = FormBorderStyle.None;
                 provdiv.TopLevel = false;
@@ -117,7 +118,7 @@ namespace Restaurante
             {
                 ventdiv = new Ventas.ventas();
                 provdiv = new Proveedores.Proveedores();
-                formSecundario = new Form2();
+                formSecundario = new agregarproducto();
                 clidiv = new Clientes.Clientes();
                 clidiv.FormBorderStyle = FormBorderStyle.None;
                 clidiv.TopLevel = false;
@@ -140,7 +141,7 @@ namespace Restaurante
             {
                 clidiv = new Clientes.Clientes();
                 provdiv = new Proveedores.Proveedores();
-                formSecundario = new Form2();
+                formSecundario = new agregarproducto();
                 ventdiv = new Ventas.ventas();
                 ventdiv.FormBorderStyle = FormBorderStyle.None;
                 ventdiv.TopLevel = false;

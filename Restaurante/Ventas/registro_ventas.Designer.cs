@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlp1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtbus = new System.Windows.Forms.TextBox();
@@ -37,11 +37,16 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cbmes = new System.Windows.Forms.ComboBox();
             this.cbbus = new System.Windows.Forms.ComboBox();
-            this.btnbusmes = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnbusmes = new System.Windows.Forms.Button();
+            this.txtano = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lb1 = new System.Windows.Forms.Label();
+            this.Lbtotal = new System.Windows.Forms.Label();
             this.tlp1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlp1
@@ -56,6 +61,7 @@
             this.tlp1.Controls.Add(this.btnbus, 2, 1);
             this.tlp1.Controls.Add(this.dgv1, 0, 4);
             this.tlp1.Controls.Add(this.tableLayoutPanel1, 0, 2);
+            this.tlp1.Controls.Add(this.tableLayoutPanel2, 0, 3);
             this.tlp1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlp1.Location = new System.Drawing.Point(0, 0);
             this.tlp1.Name = "tlp1";
@@ -115,28 +121,30 @@
             this.dgv1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv1.Location = new System.Drawing.Point(3, 165);
             this.dgv1.Name = "dgv1";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv1.Size = new System.Drawing.Size(674, 264);
             this.dgv1.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.btnbusmes, 3, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.Controls.Add(this.cbmes, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbbus, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnbusmes, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtano, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 84);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -156,6 +164,7 @@
             this.cbmes.Name = "cbmes";
             this.cbmes.Size = new System.Drawing.Size(162, 21);
             this.cbmes.TabIndex = 6;
+            this.cbmes.Click += new System.EventHandler(this.cbmes_Click);
             // 
             // cbbus
             // 
@@ -168,20 +177,7 @@
             this.cbbus.Name = "cbbus";
             this.cbbus.Size = new System.Drawing.Size(162, 21);
             this.cbbus.TabIndex = 4;
-            // 
-            // btnbusmes
-            // 
-            this.btnbusmes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnbusmes.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnbusmes.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnbusmes.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnbusmes.Location = new System.Drawing.Point(617, 3);
-            this.btnbusmes.Name = "btnbusmes";
-            this.btnbusmes.Size = new System.Drawing.Size(54, 33);
-            this.btnbusmes.TabIndex = 5;
-            this.btnbusmes.Text = "Filtrar";
-            this.btnbusmes.UseVisualStyleBackColor = false;
-            this.btnbusmes.Click += new System.EventHandler(this.btnbusmes_Click);
+            this.cbbus.Click += new System.EventHandler(this.cbbus_Click);
             // 
             // label2
             // 
@@ -197,6 +193,69 @@
             this.label2.Text = "Filtrar Registro de Ventas por";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnbusmes
+            // 
+            this.btnbusmes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnbusmes.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnbusmes.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnbusmes.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnbusmes.Location = new System.Drawing.Point(617, 3);
+            this.btnbusmes.Name = "btnbusmes";
+            this.btnbusmes.Size = new System.Drawing.Size(54, 33);
+            this.btnbusmes.TabIndex = 5;
+            this.btnbusmes.Text = "Filtrar";
+            this.btnbusmes.UseVisualStyleBackColor = false;
+            this.btnbusmes.Click += new System.EventHandler(this.btnbusmes_Click);
+            // 
+            // txtano
+            // 
+            this.txtano.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtano.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtano.Location = new System.Drawing.Point(507, 16);
+            this.txtano.Name = "txtano";
+            this.txtano.Size = new System.Drawing.Size(95, 20);
+            this.txtano.TabIndex = 8;
+            this.txtano.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtano_KeyPress);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.lb1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Lbtotal, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 129);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(674, 30);
+            this.tableLayoutPanel2.TabIndex = 7;
+            // 
+            // lb1
+            // 
+            this.lb1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb1.AutoSize = true;
+            this.lb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb1.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lb1.Location = new System.Drawing.Point(411, 14);
+            this.lb1.Name = "lb1";
+            this.lb1.Size = new System.Drawing.Size(125, 16);
+            this.lb1.TabIndex = 0;
+            this.lb1.Text = "Total de Ventas :";
+            // 
+            // Lbtotal
+            // 
+            this.Lbtotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Lbtotal.AutoSize = true;
+            this.Lbtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbtotal.ForeColor = System.Drawing.Color.Snow;
+            this.Lbtotal.Location = new System.Drawing.Point(542, 14);
+            this.Lbtotal.Name = "Lbtotal";
+            this.Lbtotal.Size = new System.Drawing.Size(51, 16);
+            this.Lbtotal.TabIndex = 1;
+            this.Lbtotal.Text = "L. 0.00";
+            // 
             // registro_ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,6 +270,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -227,5 +288,9 @@
         private System.Windows.Forms.Button btnbusmes;
         private System.Windows.Forms.ComboBox cbmes;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtano;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lb1;
+        private System.Windows.Forms.Label Lbtotal;
     }
 }

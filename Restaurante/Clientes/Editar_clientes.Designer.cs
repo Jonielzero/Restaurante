@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editar_clientes));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -85,10 +86,11 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Control;
+            this.button3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button3.Location = new System.Drawing.Point(577, 139);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(129, 28);
@@ -99,10 +101,11 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.Location = new System.Drawing.Point(577, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 28);
@@ -113,13 +116,18 @@
             // 
             // txttelefono
             // 
+            this.txttelefono.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txttelefono.ForeColor = System.Drawing.SystemColors.Window;
             this.txttelefono.Location = new System.Drawing.Point(167, 105);
             this.txttelefono.Name = "txttelefono";
             this.txttelefono.Size = new System.Drawing.Size(404, 20);
             this.txttelefono.TabIndex = 10;
+            this.txttelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefono_KeyPress);
             // 
             // txtapellido
             // 
+            this.txtapellido.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtapellido.ForeColor = System.Drawing.SystemColors.Window;
             this.txtapellido.Location = new System.Drawing.Point(167, 71);
             this.txtapellido.Name = "txtapellido";
             this.txtapellido.Size = new System.Drawing.Size(404, 20);
@@ -127,6 +135,8 @@
             // 
             // txtnombre
             // 
+            this.txtnombre.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtnombre.ForeColor = System.Drawing.SystemColors.Window;
             this.txtnombre.Location = new System.Drawing.Point(167, 37);
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(404, 20);
@@ -192,6 +202,8 @@
             // 
             // txtdireccion
             // 
+            this.txtdireccion.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtdireccion.ForeColor = System.Drawing.SystemColors.Menu;
             this.txtdireccion.Location = new System.Drawing.Point(167, 139);
             this.txtdireccion.Name = "txtdireccion";
             this.txtdireccion.Size = new System.Drawing.Size(404, 20);
@@ -199,10 +211,13 @@
             // 
             // txtrtn
             // 
+            this.txtrtn.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtrtn.ForeColor = System.Drawing.SystemColors.Window;
             this.txtrtn.Location = new System.Drawing.Point(167, 187);
             this.txtrtn.Name = "txtrtn";
             this.txtrtn.Size = new System.Drawing.Size(404, 20);
             this.txtrtn.TabIndex = 21;
+            this.txtrtn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtrtn_KeyPress);
             // 
             // label5
             // 
@@ -220,6 +235,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Editar_clientes";
             this.Text = "Editar_clientes";
             this.tableLayoutPanel1.ResumeLayout(false);

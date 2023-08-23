@@ -37,7 +37,13 @@ namespace Restaurante.Ventas
                 dgv1.DataSource = dataTable;
                 dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            }   
+            }
+            decimal total = 0;
+            for (int i = 0; i < dgv1.Rows.Count; i++)
+            {
+                total += Convert.ToDecimal(dgv1.Rows[i].Cells["total"].Value);
+            }
+            Lbtotal.Text = total.ToString("C");
         }
         private void cargardatos()
         {
@@ -66,7 +72,12 @@ namespace Restaurante.Ventas
                 dgv1.Columns["cantidad"].HeaderCell.Value = "Cantidad";
                 dgv1.Columns["descripcionventa"].HeaderCell.Value = "Descripcion";
                 dgv1.Columns["total"].HeaderCell.Value = "Total";
-
+                decimal total = 0;
+                for (int i = 0; i < dgv1.Rows.Count; i++)
+                {
+                    total += Convert.ToDecimal(dgv1.Rows[i].Cells["total"].Value);
+                }
+                Lbtotal.Text =  total.ToString("C");
             }
 
         }
@@ -77,6 +88,7 @@ namespace Restaurante.Ventas
             cbbus.Items.Add("Ultimo Mes");
             cbbus.Items.Add("Ultimo Año");
             cbbus.Items.Add("Buscar por Mes");
+            cbmes.Items.Add(" ... ");
             cbmes.Items.Add("Enero");
             cbmes.Items.Add("Febrero");
             cbmes.Items.Add("Marzo");
@@ -90,7 +102,7 @@ namespace Restaurante.Ventas
             cbmes.Items.Add("Noviembre");
             cbmes.Items.Add("Diciembre");
             cbbus.SelectedIndex = 1;
-            cbmes.SelectedIndex = -1;
+            cbmes.SelectedIndex = 0;
 
         }
 
@@ -98,13 +110,24 @@ namespace Restaurante.Ventas
         {
 
         }
+        private void buscarpormes()
+        {
 
+        }
         private void btnbusmes_Click(object sender, EventArgs e)
         {
             string seleccion = cbbus.SelectedItem.ToString();
             string mess = cbmes.SelectedItem.ToString();
             string busqueda = "";
-
+            string ano = "";
+            if (txtano.Text == "")
+            {
+                ano = "YEAR(GETDATE()) ";
+            }
+            else
+            {
+                ano = txtano.Text;
+            }
             if(seleccion == "Ultimo Mes")
             {
                 busqueda = "fechaventa >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)  AND fechaventa <= GETDATE() ";
@@ -119,56 +142,61 @@ namespace Restaurante.Ventas
             }
             else if (seleccion  == "Buscar por Mes")
             {
+
                 if (mess == "Enero")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 1  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 1  AND YEAR(FechaVenta) = " + ano;
                 }
                 else if (mess == "Febrero")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 2  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 2  AND YEAR(FechaVenta) = " + ano;
                 }
                 else if (mess == "Marzo")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 3  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 3  AND YEAR(FechaVenta) = " + ano;
 
                 }
                 else if (mess == "Abril")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 4  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 4  AND YEAR(FechaVenta) = " + ano;
 
                 }
                 else if (mess == "Mayo")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 5  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 5  AND YEAR(FechaVenta) = " + ano;
 
                 }
                 else if (mess == "Junio")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 6  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 6  AND YEAR(FechaVenta) = " + ano;
+                }
+                else if (mess == "Julio")
+                {
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 7  AND YEAR(FechaVenta) = " + ano;
                 }
                 else if (mess == "Agosto")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 7  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 8  AND YEAR(FechaVenta) = " + ano;
                 }
                 else if (mess == "Septiembre")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 8  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 9  AND YEAR(FechaVenta) = " + ano;
                 }
                 else if (mess == "Octubre")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 9  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 10  AND YEAR(FechaVenta) = " + ano;
                 }
                 else if (mess == "Noviembre")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 10  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 11  AND YEAR(FechaVenta) = " + ano;
                 }
                 else if (mess == "Diciembre")
                 {
-                    busqueda = "DATEPART(MONTH, FechaVenta) = 11  AND YEAR(FechaVenta) = YEAR(GETDATE()) ";
+                    busqueda = "DATEPART(MONTH, FechaVenta) = 12  AND YEAR(FechaVenta) = " + ano;
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione un mes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information) ;
+                    MessageBox.Show("Seleccione un mes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
 
@@ -187,6 +215,47 @@ namespace Restaurante.Ventas
                 dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             }
+            decimal total = 0;
+            for (int i = 0; i < dgv1.Rows.Count; i++)
+            {
+                total += Convert.ToDecimal(dgv1.Rows[i].Cells["total"].Value);
+            }
+            Lbtotal.Text = total.ToString("C");
+        }
+
+        private void txtano_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //valida que solo se ingresen numeros y no mas 4 digitos
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar)) 
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar)) 
+            {
+                e.Handled = false;
+            }
+
+            if (txtano.Text.Length == 4)
+            {
+                e.Handled = true;
+            }
+            
+        }
+
+        private void cbmes_Click(object sender, EventArgs e)
+        {
+            cbmes.DropDownStyle = ComboBoxStyle.DropDownList;
+           
+            cbmes.DroppedDown = true;
+        }
+
+        private void cbbus_Click(object sender, EventArgs e)
+        {
+            cbbus.DropDownStyle = ComboBoxStyle.DropDownList;
         }
     }
 }

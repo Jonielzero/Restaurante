@@ -354,6 +354,7 @@
             // 
             // dataGridViewVentas
             // 
+            this.dataGridViewVentas.AllowUserToAddRows = false;
             this.dataGridViewVentas.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridViewVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -390,9 +391,9 @@
             this.lvtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvtotal.Location = new System.Drawing.Point(245, 270);
             this.lvtotal.Name = "lvtotal";
-            this.lvtotal.Size = new System.Drawing.Size(39, 16);
+            this.lvtotal.Size = new System.Drawing.Size(47, 16);
             this.lvtotal.TabIndex = 3;
-            this.lvtotal.Text = "L. 00";
+            this.lvtotal.Text = "L0. 00";
             // 
             // dataGridView1
             // 

@@ -21,6 +21,11 @@ namespace Restaurante.Clientes
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (txtnombre.Text == "" || txtapellido.Text == "" || txttelefono.Text == "")
+            {
+                MessageBox.Show("Por favor llene los campos de nombre, apellido y telefono.");
+                return;
+            }
             int id = int.Parse(txtid.Text);
             string nombre = txtnombre.Text;
             string apellido = txtapellido.Text;
@@ -92,6 +97,34 @@ namespace Restaurante.Clientes
                         MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
                     }
                 }
+            }
+        }
+
+        private void txttelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // valida que solo se ingresen numeros
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            // valida que se pueda borrar
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void txtrtn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // valida que solo se ingresen numeros
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            // valida que se pueda borrar
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
             }
         }
     }

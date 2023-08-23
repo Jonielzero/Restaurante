@@ -34,7 +34,7 @@ namespace Restaurante
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error al conectarse a la base de datos: " + ex.Message);
+                    MessageBox.Show("Error al conectar con la base de datos: " + ex.Message);
                 }
 
             }

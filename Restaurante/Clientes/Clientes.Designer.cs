@@ -97,10 +97,11 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Control;
+            this.button3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.button3.Location = new System.Drawing.Point(577, 139);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(129, 28);
@@ -111,7 +112,9 @@
             // 
             // txtnombre
             // 
+            this.txtnombre.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtnombre.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtnombre.ForeColor = System.Drawing.SystemColors.Control;
             this.txtnombre.Location = new System.Drawing.Point(167, 3);
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(404, 20);
@@ -129,10 +132,11 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.button1.Location = new System.Drawing.Point(577, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 28);
@@ -143,7 +147,9 @@
             // 
             // txtapellido
             // 
+            this.txtapellido.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtapellido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtapellido.ForeColor = System.Drawing.SystemColors.Window;
             this.txtapellido.Location = new System.Drawing.Point(167, 37);
             this.txtapellido.Name = "txtapellido";
             this.txtapellido.Size = new System.Drawing.Size(404, 20);
@@ -151,11 +157,14 @@
             // 
             // txttelefono
             // 
+            this.txttelefono.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txttelefono.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txttelefono.ForeColor = System.Drawing.SystemColors.Menu;
             this.txttelefono.Location = new System.Drawing.Point(167, 71);
             this.txttelefono.Name = "txttelefono";
             this.txttelefono.Size = new System.Drawing.Size(404, 20);
             this.txttelefono.TabIndex = 10;
+            this.txttelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefono_KeyPress);
             // 
             // label3
             // 
@@ -173,11 +182,11 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.WindowFrame;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.NullValue = null;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
@@ -190,9 +199,10 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Control;
+            this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.button2.Location = new System.Drawing.Point(577, 207);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(129, 28);
@@ -203,7 +213,9 @@
             // 
             // txtdireccion
             // 
+            this.txtdireccion.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtdireccion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtdireccion.ForeColor = System.Drawing.SystemColors.Window;
             this.txtdireccion.Location = new System.Drawing.Point(167, 105);
             this.txtdireccion.Name = "txtdireccion";
             this.txtdireccion.Size = new System.Drawing.Size(404, 20);
@@ -211,11 +223,14 @@
             // 
             // txtrtn
             // 
+            this.txtrtn.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtrtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtrtn.ForeColor = System.Drawing.SystemColors.Window;
             this.txtrtn.Location = new System.Drawing.Point(167, 139);
             this.txtrtn.Name = "txtrtn";
             this.txtrtn.Size = new System.Drawing.Size(404, 20);
             this.txtrtn.TabIndex = 21;
+            this.txtrtn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtrtn_KeyPress);
             // 
             // label5
             // 

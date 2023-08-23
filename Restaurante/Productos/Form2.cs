@@ -170,6 +170,46 @@ namespace Restaurante
             cbproveedores.DropDownStyle = ComboBoxStyle.DropDownList; // Cambia el estilo para desplegar la lista
             cbproveedores.Focus(); // Establece el foco en el ComboBox
         }
+
+        private void txtprecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.')
+            {
+                e.Handled = false;
+            }
+
+            //permite teclas de control como retroceso
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void txtcantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.')
+            {
+                e.Handled = false;
+            }
+
+            //permite teclas de control como retroceso
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
     }
 }
 

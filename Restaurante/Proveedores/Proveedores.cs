@@ -111,5 +111,17 @@ namespace Restaurante.Proveedores
             Registro_proveedores reg = new Registro_proveedores();
             reg.Show();
         }
+
+        private void txttelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.Handled = char.IsLetter(e.KeyChar))
+            {
+                MessageBox.Show("Solo se permiten números");
+            }
+            if(txttelefono.TextLength == 8)
+            {
+                  MessageBox.Show("Solo se permiten 8 dígitos");
+            }
+        }
     }
 }
