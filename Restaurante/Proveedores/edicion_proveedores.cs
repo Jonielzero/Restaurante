@@ -17,9 +17,41 @@ namespace Restaurante.Proveedores
         {
             InitializeComponent();
         }
+        private void limpiar()
+        {
+            txtDireccion.Clear();
+            txtemail.Clear();
+            txtnombrec.Clear();
+            txtnombrep.Clear();
+            txttelefono.Clear();
+            txtid.Clear();
+        }
+        private bool validarcampos()
+        {
+            if(txtnombrep.Text == "")
+            {
+                MessageBox.Show("Escriba un nombre.");
+                return false;
+            }
+            if (txtnombrec.Text == "")
+            {
+                MessageBox.Show("Escriba un nombre de contacto.");
+                return false;
+            }
+            if (txttelefono.Text == "")
+            {
+                MessageBox.Show("Escriba un telefono.");
+                return false;
+            }
+            return true;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!validarcampos())
+            {
+                return;
+            }
             int id = int.Parse(txtid.Text);
             string nombreproveedor = txtnombrep.Text;
             string nombrecontacto = txtnombrec.Text;
@@ -65,33 +97,63 @@ namespace Restaurante.Proveedores
                     }
                 }
             }
+            limpiar();
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtid.Text);
-
-            string query = "DELETE FROM Proveedores WHERE id_proveedor = @ID";
-
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            try
             {
-                conexion.Open();
 
-                using (SqlCommand command = new SqlCommand(query, conexion))
+
+                int id = int.Parse(txtid.Text);
+
+                string query = "DELETE FROM Proveedores WHERE id_proveedor = @ID";
+
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
                 {
-                    command.Parameters.AddWithValue("@ID", id);
+                    conexion.Open();
 
-                    int rowsAffected = command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@ID", id);
 
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Registro eliminado correctamente.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Registro eliminado correctamente.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("no se puede eliminar un proveedor que tenga productos");
+            }
+            limpiar();
+        }
+
+        private void txttelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //validar que solo se puedan ingresar numeros y que se pueda borrar
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
     }

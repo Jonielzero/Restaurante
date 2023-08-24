@@ -38,29 +38,41 @@ namespace Restaurante.Productos
 
         private void btnagregar_Click(object sender, EventArgs e)
         {
-            //sumar cantidad de productos por nombre
-            string query = "UPDATE productos " +
-                            "SET cantidad = cantidad + @agregar " +
-                            "WHERE nombre_producto = @nombre";
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            try
             {
-                conexion.Open();
-                using (SqlCommand cmd = new SqlCommand(query, conexion))
-                {
-                    string nombre = cbnombre.SelectedValue.ToString();
-                    int cantidad = int.Parse(txtcantidad.Text);
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@agregar", cantidad);
-                    cmd.ExecuteNonQuery();
-                    txtcantidad.Text = cantidad.ToString();
-
-                    MessageBox.Show("se han agregado " + cantidad + " nuevos productos a " + nombre);
+                if (txtcantidad.Text == "")
+                {                   
+                    MessageBox.Show("Agrege una cantidad");
+                    return;
                 }
+                //sumar productos
+                string query = "UPDATE productos " +
+                                "SET cantidad = cantidad + @agregar " +
+                                "WHERE nombre_producto = @nombre";
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+                {
+                    conexion.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conexion))
+                    {
+                        string nombre = cbnombre.SelectedValue.ToString();
+                        int cantidad = int.Parse(txtcantidad.Text);
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@agregar", cantidad);
+                        cmd.ExecuteNonQuery();
+                        txtcantidad.Text = cantidad.ToString();
+
+                        MessageBox.Show("se han agregado " + cantidad + " nuevos productos a " + nombre);
+                    }
+                }
+                //limpia el datagridview
+                dt.Clear();
+                cargardatos();
+                txtcantidad.Clear();
             }
-            //limpia el datagridview
-            dt.Clear();
-            cargardatos();
-            txtcantidad.Clear();
+             catch 
+            {
+                MessageBox.Show("Seleccione un producto que agregar");
+            }
         }
 
 
@@ -76,8 +88,9 @@ namespace Restaurante.Productos
 
         private void btnnuevo_Click(object sender, EventArgs e)
         {
-            Form2 frm = new Form2();
-            frm.ShowDialog();
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+            
         }
 
         private void txtcantidad_KeyPress(object sender, KeyPressEventArgs e)

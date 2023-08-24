@@ -124,35 +124,85 @@ namespace Restaurante
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtid.Text); 
-            
-            string query = "DELETE FROM Productos WHERE id_producto = @ID";
-
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            try
             {
-                conexion.Open();
+                int id = int.Parse(txtid.Text);
 
-                using (SqlCommand command = new SqlCommand(query, conexion))
+                string query = "DELETE FROM Productos WHERE id_producto = @ID";
+
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
                 {
-                    command.Parameters.AddWithValue("@ID", id);
+                    conexion.Open();
 
-                    int rowsAffected = command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@ID", id);
 
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Registro eliminado correctamente.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Registro eliminado correctamente.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se puede eliminar un productoque ha sido vendido " + ex.Message);
             }
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void cbproveedores_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cbproveedores.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void txtprecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.')
+            {
+                e.Handled = false;
+            }
+            
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void txtcantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
     }
 }

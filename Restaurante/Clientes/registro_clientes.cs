@@ -17,8 +17,7 @@ namespace Restaurante.Clientes
         {
             InitializeComponent();
         }
-
-        private void registro_clientes_Load(object sender, EventArgs e)
+        private void cargardatos()
         {
             // aqui se llena el data grid view con los datos de la tabla clientes
             string query = "SELECT * FROM clientes";
@@ -40,6 +39,10 @@ namespace Restaurante.Clientes
                     cbbus.SelectedIndex = 1;
                 }
             }
+        }
+        private void registro_clientes_Load(object sender, EventArgs e)
+        {
+            cargardatos();
         }
 
         private void btneditar_Click(object sender, EventArgs e)
@@ -91,6 +94,11 @@ namespace Restaurante.Clientes
                 btnbus.PerformClick();
             }
 
+        }
+
+        private void btnactu_Click(object sender, EventArgs e)
+        {
+            cargardatos();
         }
     }
 }

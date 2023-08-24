@@ -23,7 +23,10 @@ namespace Restaurante
         private DataTable dataTable;
         private void CargarDatos()
         {
-            string query2 = "select * from productos ORDER BY id_producto DESC";
+            string query2 = "SELECT i.id_producto, i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, " +
+                "i.f_vencimiento, p.nombre_proveedor FROM productos i " +
+                "JOIN proveedores p on i.proveedor = p.id_proveedor " +
+                "ORDER BY id_producto DESC";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(query2, conexion);
@@ -38,10 +41,37 @@ namespace Restaurante
 
             }
         }
+        private bool ValidarCampos()
+        {
+            if (txtnombre.Text == "")
+            {
+                MessageBox.Show("ingrese un nombre.");
+                return false;
+            }
+            if (cbproveedores.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione un proveedor.");
+                return false;
+            }
+            if (txtprecio.Text == "")
+            {
+                MessageBox.Show("Ingrese un precio.");
+                return false;
+            }
+            if (txtcantidad.Text == "")
+            {
+                MessageBox.Show("Ingrese una cantidad.");
+                return false;
+            }
+            return true;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (!ValidarCampos())
+            {
+                return;
+            }
             Proveedores proveedorid = (Proveedores)cbproveedores.SelectedItem;
             string nombre = txtnombre.Text;
             decimal precio = decimal.Parse(txtprecio.Text);
@@ -140,6 +170,9 @@ namespace Restaurante
 
             cbproveedores.DisplayMember = "Nombre";
             cbproveedores.ValueMember = "ID";
+
+            cbproveedores.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbproveedores.AutoCompleteSource = AutoCompleteSource.ListItems;
             //cbproveedores.DropDownStyle = ComboBoxStyle.Simple;
         }
 
@@ -167,8 +200,7 @@ namespace Restaurante
 
         private void cbproveedores_Click_1(object sender, EventArgs e)
         {
-            cbproveedores.DropDownStyle = ComboBoxStyle.DropDownList; // Cambia el estilo para desplegar la lista
-            cbproveedores.Focus(); // Establece el foco en el ComboBox
+            cbproveedores.DroppedDown = true;
         }
 
         private void txtprecio_KeyPress(object sender, KeyPressEventArgs e)

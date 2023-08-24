@@ -26,7 +26,7 @@ namespace Restaurante.Ventas
                 "v.cantidad, v.descripcionventa, v.total FROM Ventas v " +
                 "JOIN productos p on v.idproductos = p.id_producto " +
                 "JOIN clientes c on v.id_clientes = c.idclientes  " +
-                "WHERE p.nombre_producto LIKE '%" + txtbuscar + "%' OR c.nombre LIKE '%" + txtbuscar + "%' " +
+                "WHERE p.nombre_producto LIKE '%" + txtbuscar + "%' OR c.nombre LIKE '%" + txtbuscar + "%' OR v.idventas LIKE '%" + txtbuscar + "%' " +
                 "ORDER BY idventas DESC";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {

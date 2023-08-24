@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(registro_clientes));
             this.tlp1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgv1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,8 +38,11 @@
             this.btnbus = new System.Windows.Forms.Button();
             this.cbbus = new System.Windows.Forms.ComboBox();
             this.btneditar = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnactu = new System.Windows.Forms.Button();
             this.tlp1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlp1
@@ -53,6 +58,7 @@
             this.tlp1.Controls.Add(this.btnbus, 2, 1);
             this.tlp1.Controls.Add(this.cbbus, 1, 1);
             this.tlp1.Controls.Add(this.btneditar, 2, 0);
+            this.tlp1.Controls.Add(this.tableLayoutPanel1, 1, 2);
             this.tlp1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlp1.Location = new System.Drawing.Point(0, 0);
             this.tlp1.Name = "tlp1";
@@ -66,18 +72,27 @@
             // 
             // dgv1
             // 
+            this.dgv1.BackgroundColor = System.Drawing.SystemColors.WindowFrame;
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv1.Location = new System.Drawing.Point(3, 69);
             this.dgv1.Name = "dgv1";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv1.Size = new System.Drawing.Size(674, 354);
             this.dgv1.TabIndex = 0;
             // 
@@ -97,8 +112,10 @@
             // 
             // txtbus
             // 
+            this.txtbus.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtbus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtbus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbus.ForeColor = System.Drawing.SystemColors.Window;
             this.txtbus.Location = new System.Drawing.Point(3, 36);
             this.txtbus.Name = "txtbus";
             this.txtbus.Size = new System.Drawing.Size(674, 26);
@@ -107,18 +124,25 @@
             // 
             // btnbus
             // 
+            this.btnbus.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.btnbus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnbus.FlatAppearance.BorderSize = 0;
+            this.btnbus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnbus.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnbus.Location = new System.Drawing.Point(743, 36);
             this.btnbus.Name = "btnbus";
             this.btnbus.Size = new System.Drawing.Size(54, 27);
             this.btnbus.TabIndex = 3;
             this.btnbus.Text = "Buscar";
-            this.btnbus.UseVisualStyleBackColor = true;
+            this.btnbus.UseVisualStyleBackColor = false;
             this.btnbus.Click += new System.EventHandler(this.btnbus_Click);
             // 
             // cbbus
             // 
+            this.cbbus.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cbbus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbbus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbbus.ForeColor = System.Drawing.SystemColors.Window;
             this.cbbus.FormattingEnabled = true;
             this.cbbus.Location = new System.Drawing.Point(683, 36);
             this.cbbus.Name = "cbbus";
@@ -127,14 +151,48 @@
             // 
             // btneditar
             // 
+            this.btneditar.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.btneditar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btneditar.FlatAppearance.BorderSize = 0;
+            this.btneditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btneditar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btneditar.Location = new System.Drawing.Point(743, 3);
             this.btneditar.Name = "btneditar";
             this.btneditar.Size = new System.Drawing.Size(54, 27);
             this.btneditar.TabIndex = 5;
             this.btneditar.Text = "Editar";
-            this.btneditar.UseVisualStyleBackColor = true;
+            this.btneditar.UseVisualStyleBackColor = false;
             this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.btnactu, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(683, 69);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(54, 354);
+            this.tableLayoutPanel1.TabIndex = 7;
+            // 
+            // btnactu
+            // 
+            this.btnactu.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnactu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnactu.FlatAppearance.BorderSize = 0;
+            this.btnactu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnactu.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnactu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnactu.Location = new System.Drawing.Point(3, 3);
+            this.btnactu.Name = "btnactu";
+            this.btnactu.Size = new System.Drawing.Size(48, 25);
+            this.btnactu.TabIndex = 0;
+            this.btnactu.Text = "Actualizar";
+            this.btnactu.UseVisualStyleBackColor = false;
+            this.btnactu.Click += new System.EventHandler(this.btnactu_Click);
             // 
             // registro_clientes
             // 
@@ -142,12 +200,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tlp1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "registro_clientes";
             this.Text = "registro_clientes";
             this.Load += new System.EventHandler(this.registro_clientes_Load);
             this.tlp1.ResumeLayout(false);
             this.tlp1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -161,5 +221,7 @@
         private System.Windows.Forms.Button btnbus;
         private System.Windows.Forms.ComboBox cbbus;
         private System.Windows.Forms.Button btneditar;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnactu;
     }
 }

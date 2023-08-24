@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(editarproducto));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -90,10 +91,11 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Control;
+            this.button3.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button3.ForeColor = System.Drawing.SystemColors.Control;
             this.button3.Location = new System.Drawing.Point(577, 139);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(129, 28);
@@ -104,10 +106,11 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.ForeColor = System.Drawing.SystemColors.Window;
             this.button1.Location = new System.Drawing.Point(577, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 28);
@@ -118,13 +121,17 @@
             // 
             // cbproveedores
             // 
+            this.cbproveedores.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cbproveedores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbproveedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbproveedores.ForeColor = System.Drawing.SystemColors.Window;
             this.cbproveedores.FormattingEnabled = true;
             this.cbproveedores.Location = new System.Drawing.Point(167, 207);
             this.cbproveedores.Name = "cbproveedores";
             this.cbproveedores.Size = new System.Drawing.Size(404, 21);
             this.cbproveedores.TabIndex = 17;
             this.cbproveedores.Click += new System.EventHandler(this.cbproveedores_Click);
+            this.cbproveedores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbproveedores_KeyPress);
             // 
             // dtpvencimiento
             // 
@@ -142,20 +149,28 @@
             // 
             // txtcantidad
             // 
+            this.txtcantidad.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtcantidad.ForeColor = System.Drawing.SystemColors.Window;
             this.txtcantidad.Location = new System.Drawing.Point(167, 105);
             this.txtcantidad.Name = "txtcantidad";
             this.txtcantidad.Size = new System.Drawing.Size(404, 20);
             this.txtcantidad.TabIndex = 10;
+            this.txtcantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcantidad_KeyPress);
             // 
             // txtprecio
             // 
+            this.txtprecio.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtprecio.ForeColor = System.Drawing.SystemColors.Window;
             this.txtprecio.Location = new System.Drawing.Point(167, 71);
             this.txtprecio.Name = "txtprecio";
             this.txtprecio.Size = new System.Drawing.Size(404, 20);
             this.txtprecio.TabIndex = 11;
+            this.txtprecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtprecio_KeyPress);
             // 
             // txtnombre
             // 
+            this.txtnombre.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtnombre.ForeColor = System.Drawing.SystemColors.Menu;
             this.txtnombre.Location = new System.Drawing.Point(167, 37);
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(404, 20);
@@ -245,6 +260,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "editarproducto";
             this.Text = "editarproducto";
             this.Load += new System.EventHandler(this.editarproducto_Load);

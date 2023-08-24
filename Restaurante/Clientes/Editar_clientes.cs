@@ -18,7 +18,15 @@ namespace Restaurante.Clientes
         {
             InitializeComponent();
         }
-
+        private void limpiar()
+        {
+            txtid.Text = "";
+            txtnombre.Text = "";
+            txtapellido.Text = "";
+            txttelefono.Text = "";
+            txtdireccion.Text = "";
+            txtrtn.Text = "";
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (txtnombre.Text == "" || txtapellido.Text == "" || txttelefono.Text == "")
@@ -31,7 +39,7 @@ namespace Restaurante.Clientes
             string apellido = txtapellido.Text;
             int telefono = int.Parse(txttelefono.Text);
             string direccion = txtdireccion.Text;
-            int rtn = int.Parse(txtrtn.Text);
+            string rtn = txtrtn.Text;
 
             if (string.IsNullOrWhiteSpace(txtnombre.Text))
             {
@@ -62,6 +70,7 @@ namespace Restaurante.Clientes
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Registro actualizado correctamente.");
+                            limpiar();
                         }
                         else
                         {
@@ -76,27 +85,36 @@ namespace Restaurante.Clientes
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtid.Text);
-            string query = "DELETE FROM clientes WHERE idclientes = @ID";
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(query, conexion))
+            try 
+            { 
+
+                int id = int.Parse(txtid.Text);
+                string query = "DELETE FROM clientes WHERE idclientes = @ID";
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
                 {
-                    conexion.Open();
-                    // Agrega parámetros a la consulta para prevenir SQL injection
-                    command.Parameters.AddWithValue("@ID", id);
-
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
+                    using (SqlCommand command = new SqlCommand(query, conexion))
                     {
-                        MessageBox.Show("Registro eliminado correctamente.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
+                        conexion.Open();
+                        // Agrega parámetros a la consulta para prevenir SQL injection
+                        command.Parameters.AddWithValue("@ID", id);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Registro eliminado correctamente.");
+                            limpiar();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pude borrar un cliente con compras en el registro");
             }
         }
 

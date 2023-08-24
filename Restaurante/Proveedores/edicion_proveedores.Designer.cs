@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(editar_proveedores));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -85,10 +86,11 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Control;
+            this.button3.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Location = new System.Drawing.Point(577, 139);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(129, 28);
@@ -99,10 +101,11 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.Location = new System.Drawing.Point(577, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 28);
@@ -113,13 +116,18 @@
             // 
             // txttelefono
             // 
+            this.txttelefono.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txttelefono.ForeColor = System.Drawing.SystemColors.Window;
             this.txttelefono.Location = new System.Drawing.Point(167, 105);
             this.txttelefono.Name = "txttelefono";
             this.txttelefono.Size = new System.Drawing.Size(404, 20);
             this.txttelefono.TabIndex = 10;
+            this.txttelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefono_KeyPress);
             // 
             // txtnombrec
             // 
+            this.txtnombrec.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtnombrec.ForeColor = System.Drawing.SystemColors.Window;
             this.txtnombrec.Location = new System.Drawing.Point(167, 71);
             this.txtnombrec.Name = "txtnombrec";
             this.txtnombrec.Size = new System.Drawing.Size(404, 20);
@@ -127,6 +135,8 @@
             // 
             // txtnombrep
             // 
+            this.txtnombrep.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtnombrep.ForeColor = System.Drawing.SystemColors.Window;
             this.txtnombrep.Location = new System.Drawing.Point(167, 37);
             this.txtnombrep.Name = "txtnombrep";
             this.txtnombrep.Size = new System.Drawing.Size(404, 20);
@@ -192,6 +202,8 @@
             // 
             // txtemail
             // 
+            this.txtemail.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtemail.ForeColor = System.Drawing.SystemColors.Window;
             this.txtemail.Location = new System.Drawing.Point(167, 139);
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(404, 20);
@@ -199,6 +211,8 @@
             // 
             // txtDireccion
             // 
+            this.txtDireccion.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDireccion.ForeColor = System.Drawing.SystemColors.Window;
             this.txtDireccion.Location = new System.Drawing.Point(167, 187);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(404, 20);
@@ -220,6 +234,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "editar_proveedores";
             this.Text = "editar_proveedores";
             this.tableLayoutPanel1.ResumeLayout(false);

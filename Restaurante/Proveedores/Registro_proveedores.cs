@@ -19,7 +19,25 @@ namespace Restaurante.Proveedores
             InitializeComponent();
         }
 
-        
+        private void cargardatos()
+        {
+            string query2 = "select * from proveedores";
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                conexion.Open();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query2, conexion);
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                dgv1.DataSource = dataTable;
+
+                cbbus.Items.Add("ID");
+                cbbus.Items.Add("Nombre de contacto");
+                cbbus.Items.Add("Proveedor");
+                cbbus.SelectedIndex = 0;
+                dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            }
+        }
 
         private void btnbus_Click(object sender, EventArgs e)
         {
@@ -57,29 +75,7 @@ namespace Restaurante.Proveedores
 
         private void Registro_proveedores_Load(object sender, EventArgs e)
         {
-            //cargar datos en el datagridview de la tabla proveedores
-            string query2 = "select * from proveedores";
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
-            {
-                conexion.Open();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(query2, conexion);
-                DataTable dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
-                dgv1.DataSource = dataTable;
-                
-                cbbus.Items.Add("ID");
-                cbbus.Items.Add("Nombre de contacto");
-                cbbus.Items.Add("Proveedor");
-                cbbus.SelectedIndex = 0; 
-                // quita la columna disponible del datagridview
-                dgv1.Columns.Remove("disponible");
-                // repara los margenes del datagridview para que sea responsivo
-                dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                // hace que la columna disponible se muestre como si o no
-                //dgv1.Columns["disponible"].DefaultCellStyle.Format = "yes/no";
-
-            }
-
+            cargardatos();
         }
 
         private void dgv1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -91,6 +87,11 @@ namespace Restaurante.Proveedores
         {
            editar_proveedores editar = new editar_proveedores();
             editar.Show();
+        }
+
+        private void btnactu_Click(object sender, EventArgs e)
+        {
+            cargardatos();
         }
     }
 }

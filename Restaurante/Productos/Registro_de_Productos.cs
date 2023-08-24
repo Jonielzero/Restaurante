@@ -7,18 +7,19 @@ namespace Restaurante
 {
     public partial class Registro_de_Productos : Form
     {
-        private DataTable dataTable; // Almacena los datos originales
-        private DataView dataView;   // Almacena los datos filtrados
-        
+        private DataTable dataTable;
+
         public Registro_de_Productos()
         {
             InitializeComponent();
         }
-
-        private void Registro_de_Productos_Load(object sender, EventArgs e)
+        private void cargar()
         {
 
-            string query2 = "select * from productos";
+            string query2 = "SELECT i.id_producto, i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, " +
+                "i.f_vencimiento, p.nombre_proveedor FROM productos i " +
+                "JOIN proveedores p on i.proveedor = p.id_proveedor " +
+                "ORDER BY id_producto DESC";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 conexion.Open();
@@ -42,6 +43,11 @@ namespace Restaurante
                 dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
+        private void Registro_de_Productos_Load(object sender, EventArgs e)
+        {
+
+            cargar();
+        }
 
         private void btnbus_Click(object sender, EventArgs e)
         {
@@ -52,17 +58,21 @@ namespace Restaurante
 
             if (selectedOption == "ID")
             {
-                aaaa = "id_producto";
+                aaaa = "i.id_producto";
             }
             else if (selectedOption == "Nombre")
             {
-                aaaa = "nombre_producto";
+                aaaa = "i.nombre_producto";
             }
             else if (selectedOption == "Proveedor")
             {
-                aaaa = "proveedor";
+                aaaa = "p.nombre_proveedor";
             }
-            string query = "select * from productos where " + aaaa + " like '%" + txtbus.Text + "%'";
+            string query = "SELECT i.id_producto, i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, " +
+                "i.f_vencimiento, p.nombre_proveedor FROM productos i " +
+                "JOIN proveedores p on i.proveedor = p.id_proveedor " +
+                "WHERE " + aaaa + " like '%" + txtbus.Text + "%'" +
+                "ORDER BY id_producto DESC";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 conexion.Open();
@@ -80,6 +90,11 @@ namespace Restaurante
         {
             editarproducto editp = new editarproducto();
             editp.Show();
+        }
+
+        private void btnactu_Click(object sender, EventArgs e)
+        {
+            cargar();
         }
     }
 }

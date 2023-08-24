@@ -17,6 +17,31 @@ namespace Restaurante.Clientes
         {
             InitializeComponent();
         }
+        private void cargardatos()
+        {
+            string query = "SELECT * FROM clientes";
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                conexion.Open();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, conexion))
+                {
+                    DataTable tabla = new DataTable();
+                    adapter.Fill(tabla);
+                    dataGridView1.DataSource = tabla;
+                    //datagridview responsivo
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+            }
+        }
+        private void limpiar()
+        {
+            txtnombre.Clear();
+            txtapellido.Clear();
+            txtdireccion.Clear();
+            txttelefono.Clear();
+            txtrtn.Clear();
+
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -50,7 +75,8 @@ namespace Restaurante.Clientes
                     MessageBox.Show("Nuevo Cliente agregado con éxito.");
                 }
             }
-
+            cargardatos();
+            limpiar();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -66,21 +92,7 @@ namespace Restaurante.Clientes
 
         private void Clientes_Load(object sender, EventArgs e)
         {
-            //aqui se cargan los datos de la tabla clientes en el datagridview
-            string query = "SELECT * FROM clientes";
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
-            {
-                conexion.Open();
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, conexion))
-                {
-                    DataTable tabla = new DataTable();
-                    adapter.Fill(tabla);
-                    dataGridView1.DataSource = tabla;
-                    //datagridview responsivo
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                }
-            }
-
+            cargardatos();
         }
 
         private void txttelefono_KeyPress(object sender, KeyPressEventArgs e)

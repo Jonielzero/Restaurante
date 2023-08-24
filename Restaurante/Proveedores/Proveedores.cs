@@ -32,11 +32,9 @@ namespace Restaurante.Proveedores
             int telefono = int.Parse(txttelefono.Text);
             string email    = txtemail.Text;
             string direccion = txtdireccion.Text;
-            bool disponible = checkdisp.Checked;
-            byte[] estado = BitConverter.GetBytes(disponible);
 
-            string query = "INSERT INTO proveedores (nombre_proveedor, nombre_contacto, telefono, email, direccion, disponible)" +
-                            "VALUES (@nombre, @contacto, @telefono, @email, @direccion, @disponible)";
+            string query = "INSERT INTO proveedores (nombre_proveedor, nombre_contacto, telefono, email, direccion)" +
+                            "VALUES (@nombre, @contacto, @telefono, @email, @direccion)";
 
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
@@ -48,7 +46,6 @@ namespace Restaurante.Proveedores
                     cmd.Parameters.AddWithValue ("@email", email);
                     cmd.Parameters.AddWithValue("@telefono", telefono);
                     cmd.Parameters.AddWithValue("@direccion", direccion);
-                    cmd.Parameters.AddWithValue("@disponible", estado);
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Nuevo Proveedor agregado con éxito.");
