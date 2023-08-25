@@ -27,6 +27,35 @@ namespace Restaurante.Clientes
             txtdireccion.Text = "";
             txtrtn.Text = "";
         }
+        private void CargarDatos()
+        {
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                string query = "SELECT nombre, apellido, telefono, direccion, RTN FROM clientes WHERE idclientes = @nombre ";
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                cmd.Parameters.AddWithValue("@nombre", txtid.Text);
+                cmd.Parameters.AddWithValue("@apellido", txtapellido.Text);
+                cmd.Parameters.AddWithValue("@telefono", txttelefono.Text);
+                cmd.Parameters.AddWithValue("@direccion", txtdireccion.Text);
+                cmd.Parameters.AddWithValue("@RTN", txtrtn.Text);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    txtnombre.Text = "";
+                    txtapellido.Text = "";
+                    txttelefono.Text = "";
+                    txtdireccion.Text = "";
+                    txtrtn.Text = "";
+                    txtnombre.Text = reader["nombre"].ToString();
+                    txtapellido.Text = reader["apellido"].ToString();
+                    txttelefono.Text = reader["telefono"].ToString();
+                    txtdireccion.Text = reader["direccion"].ToString();
+                    txtrtn.Text = reader["RTN"].ToString();
+                }
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (txtnombre.Text == "" || txtapellido.Text == "" || txttelefono.Text == "")
@@ -143,6 +172,14 @@ namespace Restaurante.Clientes
             else if (char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
+            }
+        }
+
+        private void txtid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                CargarDatos();
             }
         }
     }

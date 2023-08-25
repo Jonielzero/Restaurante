@@ -29,7 +29,45 @@ namespace Restaurante
                 return Nombre;
             }
         }
+        private void limpiar()
+        {
+            txtid.Text = "";
+            txtprecio.Text = "";
+            txtcantidad.Text = "";
+            txtnombre.Text = "";
+            dtpelaboracion.Value = DateTime.Now;
+            dtpvencimiento.Value = DateTime.Now;
+            cbproveedores.SelectedIndex = -1;
+        }
+        private void CargarDatos()
+        {
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                string query = "SELECT i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, i.f_vencimiento, p.nombre_proveedor FROM productos i JOIN proveedores p ON i.proveedor = p.id_proveedor WHERE id_producto = @id ";
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                cmd.Parameters.AddWithValue("@id", txtid.Text);
 
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    txtprecio.Text = "";
+                    txtcantidad.Text = "";
+                    txtnombre.Text = "";
+                    dtpelaboracion.Value = DateTime.Now;
+                    dtpvencimiento.Value = DateTime.Now;
+                    cbproveedores.SelectedIndex = -1;
+                    txtnombre.Text = reader["nombre_producto"].ToString();
+                    txtcantidad.Text = reader["cantidad"].ToString();
+                    dtpelaboracion.Value = Convert.ToDateTime(reader["f_elaboracion"].ToString());
+                    dtpvencimiento.Value = Convert.ToDateTime(reader["f_vencimiento"].ToString());
+                    cbproveedores.Text = reader["nombre_proveedor"].ToString();
+                    txtprecio.Text = reader["precio"].ToString();
+                    // haz que el precio este en formato decimal
+                    txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("N2");
+                }
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             int id = int.Parse(txtid.Text);
@@ -84,10 +122,12 @@ namespace Restaurante
                     }
                 }
             }
+            limpiar();
         }
 
         private void editarproducto_Load(object sender, EventArgs e)
         {
+            limpiar();
              string query1 = "select id_proveedor, nombre_proveedor from proveedores";
 
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
@@ -113,7 +153,6 @@ namespace Restaurante
 
             cbproveedores.DisplayMember = "Nombre";
             cbproveedores.ValueMember = "ID";
-            cbproveedores.DropDownStyle = ComboBoxStyle.Simple;
         }
 
         private void cbproveedores_Click(object sender, EventArgs e)
@@ -203,6 +242,19 @@ namespace Restaurante
                 MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        }
+
+        private void txtid_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                CargarDatos();
+            }   
         }
     }
 }

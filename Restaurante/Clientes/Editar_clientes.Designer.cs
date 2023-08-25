@@ -199,6 +199,7 @@
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(404, 20);
             this.txtid.TabIndex = 19;
+            this.txtid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtid_KeyPress);
             // 
             // txtdireccion
             // 

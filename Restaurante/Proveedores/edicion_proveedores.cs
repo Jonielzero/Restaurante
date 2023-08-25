@@ -26,6 +26,26 @@ namespace Restaurante.Proveedores
             txttelefono.Clear();
             txtid.Clear();
         }
+        private void CargarDatos()
+        {
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                string query = "SELECT nombre_proveedor, nombre_contacto, telefono, email, direccion FROM proveedores WHERE id_proveedor = @nombre ";
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                cmd.Parameters.AddWithValue("@nombre", txtid.Text);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    txtnombrep.Text = reader["nombre_proveedor"].ToString();
+                    txtnombrec.Text = reader["nombre_contacto"].ToString();
+                    txttelefono.Text = reader["telefono"].ToString();
+                    txtemail.Text = reader["email"].ToString();
+                    txtDireccion.Text = reader["direccion"].ToString();
+                }
+            }
+        }
         private bool validarcampos()
         {
             if(txtnombrep.Text == "")
@@ -154,6 +174,14 @@ namespace Restaurante.Proveedores
             else
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                CargarDatos();
             }
         }
     }

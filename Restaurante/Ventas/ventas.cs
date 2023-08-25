@@ -67,6 +67,7 @@ namespace Restaurante.Ventas
         {
             public int ID { get; set; }
             public string Nombre { get; set; }
+
         }
 
         private class getClientes
@@ -118,6 +119,24 @@ namespace Restaurante.Ventas
 
             return nombreProducto;
             
+        }
+        private void Cargarprecio()
+        {
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                string query = "SELECT precio FROM productos WHERE nombre_producto = @nombre ";
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                cmd.Parameters.AddWithValue("@nombre", cbproducto.Text);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    txtprecio.Text = "";
+                    txtprecio.Text = reader["precio"].ToString();
+                    txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("C");
+                }
+            }
         }
 
         private void MostrarVentasEnGridView()
@@ -463,6 +482,23 @@ namespace Restaurante.Ventas
         {
             registro_ventas registro = new registro_ventas();
             registro.Show();
+        }
+
+        private void cbproducto_DropDownClosed(object sender, EventArgs e)
+        {
+            
+            
+            
+        }
+
+        private void cbproducto_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Cargarprecio();
+        }
+
+        private void txtprecio_Click(object sender, EventArgs e)
+        {
+            txtprecio.Select (0,txtprecio.Text.Length);
         }
     }
 }

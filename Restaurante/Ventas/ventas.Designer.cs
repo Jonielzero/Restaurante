@@ -151,6 +151,7 @@
             this.txtprecio.Name = "txtprecio";
             this.txtprecio.Size = new System.Drawing.Size(319, 20);
             this.txtprecio.TabIndex = 4;
+            this.txtprecio.Click += new System.EventHandler(this.txtprecio_Click);
             this.txtprecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtprecio_KeyPress);
             // 
             // txtdescripcion
@@ -233,6 +234,8 @@
             this.cbproducto.TabIndex = 1;
             this.cbproducto.ValueMember = "ID";
             this.cbproducto.SelectedIndexChanged += new System.EventHandler(this.cbproducto_SelectedIndexChanged);
+            this.cbproducto.DropDownClosed += new System.EventHandler(this.cbproducto_DropDownClosed);
+            this.cbproducto.SelectedValueChanged += new System.EventHandler(this.cbproducto_SelectedValueChanged);
             this.cbproducto.TextChanged += new System.EventHandler(this.cbproducto_TextChanged);
             this.cbproducto.Click += new System.EventHandler(this.cbproducto_Click);
             this.cbproducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbproducto_KeyPress);
