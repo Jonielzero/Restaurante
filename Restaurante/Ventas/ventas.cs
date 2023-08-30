@@ -134,7 +134,7 @@ namespace Restaurante.Ventas
                 {
                     txtprecio.Text = "";
                     txtprecio.Text = reader["precio"].ToString();
-                    txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("C");
+                    txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("N2");
                 }
             }
         }

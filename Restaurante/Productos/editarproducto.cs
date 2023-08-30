@@ -63,7 +63,6 @@ namespace Restaurante
                     dtpvencimiento.Value = Convert.ToDateTime(reader["f_vencimiento"].ToString());
                     cbproveedores.Text = reader["nombre_proveedor"].ToString();
                     txtprecio.Text = reader["precio"].ToString();
-                    // haz que el precio este en formato decimal
                     txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("N2");
                 }
             }
