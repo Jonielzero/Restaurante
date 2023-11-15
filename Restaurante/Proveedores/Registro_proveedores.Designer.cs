@@ -36,13 +36,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtbus = new System.Windows.Forms.TextBox();
             this.btnbus = new System.Windows.Forms.Button();
-            this.cbbus = new System.Windows.Forms.ComboBox();
             this.btneditar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnactu = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tlp1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tlp1
@@ -56,7 +56,6 @@
             this.tlp1.Controls.Add(this.label1, 0, 0);
             this.tlp1.Controls.Add(this.txtbus, 0, 1);
             this.tlp1.Controls.Add(this.btnbus, 2, 1);
-            this.tlp1.Controls.Add(this.cbbus, 1, 1);
             this.tlp1.Controls.Add(this.btneditar, 2, 0);
             this.tlp1.Controls.Add(this.tableLayoutPanel1, 1, 2);
             this.tlp1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -86,6 +85,7 @@
             this.dgv1.GridColor = System.Drawing.SystemColors.WindowFrame;
             this.dgv1.Location = new System.Drawing.Point(3, 69);
             this.dgv1.Name = "dgv1";
+            this.dgv1.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -121,6 +121,7 @@
             this.txtbus.Name = "txtbus";
             this.txtbus.Size = new System.Drawing.Size(674, 26);
             this.txtbus.TabIndex = 2;
+            this.txtbus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbus_KeyPress);
             // 
             // btnbus
             // 
@@ -136,17 +137,6 @@
             this.btnbus.Text = "Buscar";
             this.btnbus.UseVisualStyleBackColor = false;
             this.btnbus.Click += new System.EventHandler(this.btnbus_Click);
-            // 
-            // cbbus
-            // 
-            this.cbbus.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.cbbus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbbus.ForeColor = System.Drawing.SystemColors.Window;
-            this.cbbus.FormattingEnabled = true;
-            this.cbbus.Location = new System.Drawing.Point(683, 36);
-            this.cbbus.Name = "cbbus";
-            this.cbbus.Size = new System.Drawing.Size(54, 21);
-            this.cbbus.TabIndex = 4;
             // 
             // btneditar
             // 
@@ -167,31 +157,28 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.btnactu, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(683, 69);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.99435F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.00565F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(54, 354);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
-            // btnactu
+            // pictureBox2
             // 
-            this.btnactu.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnactu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnactu.FlatAppearance.BorderSize = 0;
-            this.btnactu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnactu.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnactu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnactu.Location = new System.Drawing.Point(3, 3);
-            this.btnactu.Name = "btnactu";
-            this.btnactu.Size = new System.Drawing.Size(48, 25);
-            this.btnactu.TabIndex = 0;
-            this.btnactu.Text = "Actualizar";
-            this.btnactu.UseVisualStyleBackColor = false;
-            this.btnactu.Click += new System.EventHandler(this.btnactu_Click);
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = global::Restaurante.Properties.Resources.refresh_icon;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(48, 40);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // Registro_proveedores
             // 
@@ -207,6 +194,7 @@
             this.tlp1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -218,9 +206,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtbus;
         private System.Windows.Forms.Button btnbus;
-        private System.Windows.Forms.ComboBox cbbus;
         private System.Windows.Forms.Button btneditar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnactu;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

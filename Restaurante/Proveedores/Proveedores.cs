@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Restaurante.Proveedores
@@ -17,39 +10,75 @@ namespace Restaurante.Proveedores
         public Proveedores()
         {
             InitializeComponent();
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
+        private bool validarcampos()
+        {
+            if (txtproveedores.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el nombre del proveedor");
+                return false;
+            }
+            if (txtcontacto.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el nombre del contacto");
+                return false;
+            }
+            if (txttelefono.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el número de teléfono");
+                return false;
+            }
+            return true;
 
+        }
+        private void limpiarcampos()
+        {
+            txtcontacto.Text = "";
+            txtdireccion.Text = "";
+            txtemail.Text = "";
+            txtproveedores.Text = "";
+            txttelefono.Text = "";
+
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            string proveedores = txtproveedores.Text;
-            string contacto = txtcontacto.Text;
-            int telefono = int.Parse(txttelefono.Text);
-            string email    = txtemail.Text;
-            string direccion = txtdireccion.Text;
-
-            string query = "INSERT INTO proveedores (nombre_proveedor, nombre_contacto, telefono, email, direccion)" +
-                            "VALUES (@nombre, @contacto, @telefono, @email, @direccion)";
-
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            if (!validarcampos())
             {
-                conexion.Open();
-                using(SqlCommand cmd = new SqlCommand(query, conexion)) 
-                {
-                    cmd.Parameters.AddWithValue("@nombre", proveedores);
-                    cmd.Parameters.AddWithValue("@contacto", contacto);
-                    cmd.Parameters.AddWithValue ("@email", email);
-                    cmd.Parameters.AddWithValue("@telefono", telefono);
-                    cmd.Parameters.AddWithValue("@direccion", direccion);
+                return;
+            }
+            else
+            {
+                string proveedores = txtproveedores.Text;
+                string contacto = txtcontacto.Text;
+                int telefono = int.Parse(txttelefono.Text);
+                string email = txtemail.Text;
+                string direccion = txtdireccion.Text;
 
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Nuevo Proveedor agregado con éxito.");
+                string query = "INSERT INTO proveedores (nombre_proveedor, nombre_contacto, telefono, email, direccion)" +
+                                "VALUES (@nombre, @contacto, @telefono, @email, @direccion)";
+
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+                {
+                    conexion.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", proveedores);
+                        cmd.Parameters.AddWithValue("@contacto", contacto);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@telefono", telefono);
+                        cmd.Parameters.AddWithValue("@direccion", direccion);
+
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Nuevo Proveedor agregado con éxito.");
+                    }
                 }
+                limpiarcampos();
             }
         }
         public DataTable dataTable;
@@ -115,9 +144,42 @@ namespace Restaurante.Proveedores
             {
                 MessageBox.Show("Solo se permiten números");
             }
-            if(txttelefono.TextLength == 8)
+
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                  MessageBox.Show("Solo se permiten 8 dígitos");
+                txtemail.Focus();
+            }
+        }
+
+        private void txtproveedores_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                txtcontacto.Focus();
+            }
+        }
+
+        private void txtcontacto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                txttelefono.Focus();
+            }
+        }
+
+        private void txtemail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                txtdireccion.Focus();
+            }
+        }
+
+        private void txtdireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                button1_Click(sender, e);
             }
         }
     }

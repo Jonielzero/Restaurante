@@ -121,11 +121,12 @@
             this.cbnombre.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cbnombre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbnombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbnombre.ForeColor = System.Drawing.SystemColors.Window;
             this.cbnombre.FormattingEnabled = true;
             this.cbnombre.Location = new System.Drawing.Point(3, 80);
             this.cbnombre.Name = "cbnombre";
-            this.cbnombre.Size = new System.Drawing.Size(256, 21);
+            this.cbnombre.Size = new System.Drawing.Size(256, 28);
             this.cbnombre.TabIndex = 3;
             this.cbnombre.Click += new System.EventHandler(this.cbnombre_Click);
             // 
@@ -133,10 +134,11 @@
             // 
             this.txtcantidad.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtcantidad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtcantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtcantidad.ForeColor = System.Drawing.SystemColors.Window;
             this.txtcantidad.Location = new System.Drawing.Point(3, 234);
             this.txtcantidad.Name = "txtcantidad";
-            this.txtcantidad.Size = new System.Drawing.Size(256, 20);
+            this.txtcantidad.Size = new System.Drawing.Size(256, 26);
             this.txtcantidad.TabIndex = 4;
             this.txtcantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcantidad_KeyPress);
             // 
@@ -224,12 +226,14 @@
             this.btncancelar.Name = "btncancelar";
             this.btncancelar.Size = new System.Drawing.Size(57, 29);
             this.btncancelar.TabIndex = 0;
-            this.btncancelar.Text = "Cancelar";
+            this.btncancelar.Text = "Salir";
             this.btncancelar.UseVisualStyleBackColor = false;
             this.btncancelar.Click += new System.EventHandler(this.btncancelar_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -243,6 +247,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(483, 70);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(234, 309);
             this.dataGridView1.TabIndex = 1;
             // 

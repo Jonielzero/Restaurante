@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Restaurante.Ventas
@@ -23,7 +19,7 @@ namespace Restaurante.Ventas
             string query2 = "SELECT v.idventas, p.nombre_producto, c.nombre cliente, v.fechaventa, v.precio, " +
                 "v.cantidad, v.descripcionventa, v.total FROM Ventas v " +
                 "JOIN productos p on v.idproductos = p.id_producto " +
-                "JOIN clientes c on v.id_clientes = c.idclientes  "+
+                "JOIN clientes c on v.id_clientes = c.idclientes  " +
                 "WHERE v.fechaventa BETWEEN CONVERT(DATE, GETDATE()) AND GETDATE() ORDER BY idventas DESC";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
@@ -118,7 +114,7 @@ namespace Restaurante.Ventas
             }
 
             return nombreProducto;
-            
+
         }
         private void Cargarprecio()
         {
@@ -172,7 +168,7 @@ namespace Restaurante.Ventas
                         command.Parameters.AddWithValue("@Descripcion", venta.Descripcion);
                         command.Parameters.AddWithValue("@Total", venta.Total);
 
-                        
+
                         command.ExecuteNonQuery();
                     }
                     string query2 = "UPDATE productos " +
@@ -236,7 +232,7 @@ namespace Restaurante.Ventas
                         string nombreProducto = reader["nombre_producto"].ToString();
 
                         cbproducto.Items.Add(new getProductos { ID = idProducto, Nombre = nombreProducto });
-                        
+
                     }
 
                     reader.Close();
@@ -251,14 +247,14 @@ namespace Restaurante.Ventas
                         string nombreCliente = reader["nombre"].ToString();
 
                         cbcliente.Items.Add(new getClientes { ID = idCliente, Nombre = nombreCliente });
-                        
+
                     }
 
                     reader.Close();
-                }   
+                }
 
             }
-            
+
             cbproducto.DisplayMember = "Nombre";
             cbproducto.ValueMember = "ID";
             cbcliente.DisplayMember = "Nombre";
@@ -317,7 +313,7 @@ namespace Restaurante.Ventas
 
             }
             dataGridViewVentas.ReadOnly = true;
-            
+
         }
 
         private void btnaceptar_Click(object sender, EventArgs e)
@@ -332,7 +328,7 @@ namespace Restaurante.Ventas
             {
                 e.Handled = false;
             }
-            
+
             //permite teclas de control como retroceso
             else if (char.IsControl(e.KeyChar))
             {
@@ -342,7 +338,7 @@ namespace Restaurante.Ventas
             {
                 e.Handled = true;
                 MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
             }
         }
 
@@ -377,7 +373,7 @@ namespace Restaurante.Ventas
         {
             //desplegar combo box
             cbproducto.DroppedDown = true;
-            
+
         }
 
 
@@ -400,7 +396,7 @@ namespace Restaurante.Ventas
                     }
                 }
             }
-            
+
 
         }
 
@@ -450,7 +446,7 @@ namespace Restaurante.Ventas
                 MessageBox.Show("Producto eliminado de la lista.");
 
             }
-           
+
 
         }
 
@@ -463,18 +459,18 @@ namespace Restaurante.Ventas
 
         private void dataGridViewVentas_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
         }
 
         private void cbcliente_TextChanged(object sender, EventArgs e)
         {
-            
+
 
         }
 
         private void cbproducto_TextChanged(object sender, EventArgs e)
         {
-          
+
 
         }
 
@@ -486,9 +482,9 @@ namespace Restaurante.Ventas
 
         private void cbproducto_DropDownClosed(object sender, EventArgs e)
         {
-            
-            
-            
+
+
+
         }
 
         private void cbproducto_SelectedValueChanged(object sender, EventArgs e)
@@ -498,7 +494,7 @@ namespace Restaurante.Ventas
 
         private void txtprecio_Click(object sender, EventArgs e)
         {
-            txtprecio.Select (0,txtprecio.Text.Length);
+            txtprecio.Select(0, txtprecio.Text.Length);
         }
     }
 }

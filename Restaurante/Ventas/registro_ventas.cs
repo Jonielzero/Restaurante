@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Restaurante.Ventas
 {
@@ -77,7 +71,7 @@ namespace Restaurante.Ventas
                 {
                     total += Convert.ToDecimal(dgv1.Rows[i].Cells["total"].Value);
                 }
-                Lbtotal.Text =  total.ToString("C");
+                Lbtotal.Text = total.ToString("C");
             }
 
         }
@@ -128,7 +122,7 @@ namespace Restaurante.Ventas
             {
                 ano = txtano.Text;
             }
-            if(seleccion == "Ultimo Mes")
+            if (seleccion == "Ultimo Mes")
             {
                 busqueda = "fechaventa >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)  AND fechaventa <= GETDATE() ";
             }
@@ -140,7 +134,7 @@ namespace Restaurante.Ventas
             {
                 busqueda = "fechaventa >= DATEADD(WEEK, DATEDIFF(WEEK, 0, GETDATE()), 0)  AND fechaventa <= GETDATE() ";
             }
-            else if (seleccion  == "Buscar por Mes")
+            else if (seleccion == "Buscar por Mes")
             {
 
                 if (mess == "Enero")
@@ -230,11 +224,11 @@ namespace Restaurante.Ventas
             {
                 e.Handled = false;
             }
-            else if (char.IsControl(e.KeyChar)) 
+            else if (char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
-            else if (char.IsSeparator(e.KeyChar)) 
+            else if (char.IsSeparator(e.KeyChar))
             {
                 e.Handled = false;
             }
@@ -243,13 +237,13 @@ namespace Restaurante.Ventas
             {
                 e.Handled = true;
             }
-            
+
         }
 
         private void cbmes_Click(object sender, EventArgs e)
         {
             cbmes.DropDownStyle = ComboBoxStyle.DropDownList;
-           
+
             cbmes.DroppedDown = true;
         }
 

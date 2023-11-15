@@ -44,6 +44,7 @@
             this.txtemail = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,20 +68,21 @@
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtid, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtemail, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtDireccion, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.txtDireccion, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.ForeColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.758621F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.758621F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.758621F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.758621F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.758621F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.88889F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.0356F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.0356F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.0356F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.0356F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.0356F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.037027F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.78497F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
@@ -91,9 +93,9 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(577, 139);
+            this.button3.Location = new System.Drawing.Point(577, 147);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(129, 28);
+            this.button3.Size = new System.Drawing.Size(129, 30);
             this.button3.TabIndex = 14;
             this.button3.Text = "Eliminar";
             this.button3.UseVisualStyleBackColor = false;
@@ -108,9 +110,9 @@
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.Location = new System.Drawing.Point(577, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 28);
+            this.button1.Size = new System.Drawing.Size(129, 30);
             this.button1.TabIndex = 12;
-            this.button1.Text = "Aceptar";
+            this.button1.Text = "Modificar";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -118,7 +120,7 @@
             // 
             this.txttelefono.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txttelefono.ForeColor = System.Drawing.SystemColors.Window;
-            this.txttelefono.Location = new System.Drawing.Point(167, 105);
+            this.txttelefono.Location = new System.Drawing.Point(167, 111);
             this.txttelefono.Name = "txttelefono";
             this.txttelefono.Size = new System.Drawing.Size(404, 20);
             this.txttelefono.TabIndex = 10;
@@ -128,7 +130,7 @@
             // 
             this.txtnombrec.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtnombrec.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtnombrec.Location = new System.Drawing.Point(167, 71);
+            this.txtnombrec.Location = new System.Drawing.Point(167, 75);
             this.txtnombrec.Name = "txtnombrec";
             this.txtnombrec.Size = new System.Drawing.Size(404, 20);
             this.txtnombrec.TabIndex = 11;
@@ -137,7 +139,7 @@
             // 
             this.txtnombrep.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtnombrep.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtnombrep.Location = new System.Drawing.Point(167, 37);
+            this.txtnombrep.Location = new System.Drawing.Point(167, 39);
             this.txtnombrep.Name = "txtnombrep";
             this.txtnombrep.Size = new System.Drawing.Size(404, 20);
             this.txtnombrep.TabIndex = 6;
@@ -146,9 +148,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label4.Location = new System.Drawing.Point(129, 136);
+            this.label4.Location = new System.Drawing.Point(129, 144);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 34);
+            this.label4.Size = new System.Drawing.Size(32, 36);
             this.label4.TabIndex = 3;
             this.label4.Text = "Email";
             // 
@@ -156,9 +158,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label3.Location = new System.Drawing.Point(112, 102);
+            this.label3.Location = new System.Drawing.Point(112, 108);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 34);
+            this.label3.Size = new System.Drawing.Size(49, 36);
             this.label3.TabIndex = 2;
             this.label3.Text = "Telefono";
             // 
@@ -166,9 +168,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Location = new System.Drawing.Point(54, 68);
+            this.label2.Location = new System.Drawing.Point(54, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 34);
+            this.label2.Size = new System.Drawing.Size(107, 36);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre del Contacto";
             // 
@@ -176,9 +178,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label1.Location = new System.Drawing.Point(50, 34);
+            this.label1.Location = new System.Drawing.Point(50, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 34);
+            this.label1.Size = new System.Drawing.Size(111, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre de Proveedor";
             // 
@@ -188,7 +190,7 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Right;
             this.label7.Location = new System.Drawing.Point(74, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 34);
+            this.label7.Size = new System.Drawing.Size(87, 36);
             this.label7.TabIndex = 18;
             this.label7.Text = "ID del Proveedor";
             // 
@@ -205,7 +207,7 @@
             // 
             this.txtemail.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtemail.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtemail.Location = new System.Drawing.Point(167, 139);
+            this.txtemail.Location = new System.Drawing.Point(167, 147);
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(404, 20);
             this.txtemail.TabIndex = 20;
@@ -214,7 +216,7 @@
             // 
             this.txtDireccion.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtDireccion.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtDireccion.Location = new System.Drawing.Point(167, 187);
+            this.txtDireccion.Location = new System.Drawing.Point(167, 183);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(404, 20);
             this.txtDireccion.TabIndex = 21;
@@ -223,11 +225,25 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label5.Location = new System.Drawing.Point(109, 184);
+            this.label5.Location = new System.Drawing.Point(109, 180);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 266);
+            this.label5.Size = new System.Drawing.Size(52, 36);
             this.label5.TabIndex = 4;
             this.label5.Text = "Direccion";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 219);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(158, 228);
+            this.tableLayoutPanel2.TabIndex = 22;
             // 
             // editar_proveedores
             // 
@@ -261,5 +277,6 @@
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.TextBox txtemail;
         private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }

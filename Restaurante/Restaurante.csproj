@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -68,6 +83,7 @@
     <Compile Include="Clientes\registro_clientes.Designer.cs">
       <DependentUpon>registro_clientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="encriptador.cs" />
     <Compile Include="Productos\agregarproducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +116,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Proveedores\edicion_proveedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +138,18 @@
     </Compile>
     <Compile Include="Proveedores\Registro_proveedores.Designer.cs">
       <DependentUpon>Registro_proveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\Contra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Contra.Designer.cs">
+      <DependentUpon>Contra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios\usuarios.Designer.cs">
+      <DependentUpon>usuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Ventas\registro_ventas.cs">
       <SubType>Form</SubType>
@@ -153,14 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Productos\Registro_de_Productos.resx">
       <DependentUpon>Registro_de_Productos.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,6 +200,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Proveedores\Registro_proveedores.resx">
       <DependentUpon>Registro_proveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios\Contra.resx">
+      <DependentUpon>Contra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios\usuarios.resx">
+      <DependentUpon>usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ventas\registro_ventas.resx">
       <DependentUpon>registro_ventas.cs</DependentUpon>
@@ -204,6 +238,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WhatsApp Image 2023-08-14 at 10.40.32.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-icon.png" />
+    <None Include="Resources\arrow-refresh-reload-icon-291.png" />
+    <None Include="Resources\icon.png" />
+    <None Include="Resources\arrow-refresh-reload-icon-29.png" />
+    <None Include="Resources\clos.png" />
+    <Content Include="Resources\closed.png" />
+    <Content Include="Resources\cont.txt" />
+    <Content Include="Resources\open.png" />
+    <None Include="Resources\OpenEye_icon.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

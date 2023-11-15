@@ -159,6 +159,7 @@
             this.txtdescripcion.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtdescripcion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtdescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtdescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtdescripcion.ForeColor = System.Drawing.SystemColors.Window;
             this.txtdescripcion.Location = new System.Drawing.Point(3, 154);
             this.txtdescripcion.Multiline = true;
@@ -226,11 +227,12 @@
             this.cbproducto.DisplayMember = "Nombre";
             this.cbproducto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbproducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbproducto.ForeColor = System.Drawing.SystemColors.Window;
             this.cbproducto.FormattingEnabled = true;
             this.cbproducto.Location = new System.Drawing.Point(3, 91);
             this.cbproducto.Name = "cbproducto";
-            this.cbproducto.Size = new System.Drawing.Size(319, 21);
+            this.cbproducto.Size = new System.Drawing.Size(319, 28);
             this.cbproducto.TabIndex = 1;
             this.cbproducto.ValueMember = "ID";
             this.cbproducto.SelectedIndexChanged += new System.EventHandler(this.cbproducto_SelectedIndexChanged);
@@ -245,11 +247,12 @@
             this.cbcliente.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cbcliente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbcliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbcliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbcliente.ForeColor = System.Drawing.SystemColors.Window;
             this.cbcliente.FormattingEnabled = true;
             this.cbcliente.Location = new System.Drawing.Point(3, 28);
             this.cbcliente.Name = "cbcliente";
-            this.cbcliente.Size = new System.Drawing.Size(319, 21);
+            this.cbcliente.Size = new System.Drawing.Size(319, 28);
             this.cbcliente.TabIndex = 2;
             this.cbcliente.TextChanged += new System.EventHandler(this.cbcliente_TextChanged);
             this.cbcliente.Click += new System.EventHandler(this.cbcliente_Click);
@@ -352,6 +355,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.67139F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.32861F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(333, 324);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
@@ -380,10 +384,10 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(196, 270);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(190, 268);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.Size = new System.Drawing.Size(49, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Total";
             // 
@@ -391,10 +395,10 @@
             // 
             this.lvtotal.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lvtotal.AutoSize = true;
-            this.lvtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvtotal.Location = new System.Drawing.Point(245, 270);
+            this.lvtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvtotal.Location = new System.Drawing.Point(245, 268);
             this.lvtotal.Name = "lvtotal";
-            this.lvtotal.Size = new System.Drawing.Size(47, 16);
+            this.lvtotal.Size = new System.Drawing.Size(59, 20);
             this.lvtotal.TabIndex = 3;
             this.lvtotal.Text = "L0. 00";
             // 

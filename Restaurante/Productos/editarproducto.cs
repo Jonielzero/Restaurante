@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Restaurante.Form2;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Restaurante
 {
@@ -72,7 +63,8 @@ namespace Restaurante
             int id = int.Parse(txtid.Text);
             Proveedores proveedorid = (Proveedores)cbproveedores.SelectedItem;
             string nombre = txtnombre.Text;
-            if (string.IsNullOrEmpty(txtprecio.Text)){
+            if (string.IsNullOrEmpty(txtprecio.Text))
+            {
                 MessageBox.Show("el campo nombre no puede estar en blanco");
                 return;
             }
@@ -97,15 +89,15 @@ namespace Restaurante
 
                     using (SqlCommand command = new SqlCommand(query, conexion))
                     {
-                            conexion.Open();
-                            // Agrega parámetros a la consulta para prevenir SQL injection
-                            command.Parameters.AddWithValue("@Nuevonombre", nombre);
-                            command.Parameters.AddWithValue("@NuevoPrecio", precio);
-                            command.Parameters.AddWithValue("@NuevaCantidad", cantidad);
-                            command.Parameters.AddWithValue("@Nuevaf_elab", fechaelaboracion);
-                            command.Parameters.AddWithValue("@Nuevaf_venc", fechavencimiento);
-                            command.Parameters.AddWithValue("@Nuevoproveedor", proveedor);
-                            command.Parameters.AddWithValue("@ID", id);
+                        conexion.Open();
+                        // Agrega parámetros a la consulta para prevenir SQL injection
+                        command.Parameters.AddWithValue("@Nuevonombre", nombre);
+                        command.Parameters.AddWithValue("@NuevoPrecio", precio);
+                        command.Parameters.AddWithValue("@NuevaCantidad", cantidad);
+                        command.Parameters.AddWithValue("@Nuevaf_elab", fechaelaboracion);
+                        command.Parameters.AddWithValue("@Nuevaf_venc", fechavencimiento);
+                        command.Parameters.AddWithValue("@Nuevoproveedor", proveedor);
+                        command.Parameters.AddWithValue("@ID", id);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -127,7 +119,7 @@ namespace Restaurante
         private void editarproducto_Load(object sender, EventArgs e)
         {
             limpiar();
-             string query1 = "select id_proveedor, nombre_proveedor from proveedores";
+            string query1 = "select id_proveedor, nombre_proveedor from proveedores";
 
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
@@ -211,7 +203,7 @@ namespace Restaurante
             {
                 e.Handled = false;
             }
-            
+
             else if (char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
@@ -230,7 +222,7 @@ namespace Restaurante
             {
                 e.Handled = false;
             }
-            
+
             else if (char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
@@ -245,7 +237,7 @@ namespace Restaurante
 
         private void txtid_Enter(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtid_KeyPress(object sender, KeyPressEventArgs e)
@@ -253,7 +245,7 @@ namespace Restaurante
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 CargarDatos();
-            }   
+            }
         }
     }
 }

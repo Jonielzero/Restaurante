@@ -41,7 +41,7 @@ namespace Restaurante.Productos
             try
             {
                 if (txtcantidad.Text == "")
-                {                   
+                {
                     MessageBox.Show("Agrege una cantidad");
                     return;
                 }
@@ -69,7 +69,7 @@ namespace Restaurante.Productos
                 cargardatos();
                 txtcantidad.Clear();
             }
-             catch 
+            catch
             {
                 MessageBox.Show("Seleccione un producto que agregar");
             }
@@ -90,12 +90,12 @@ namespace Restaurante.Productos
         {
             Form2 form2 = new Form2();
             form2.ShowDialog();
-            
+
         }
 
         private void txtcantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsDigit(e.KeyChar) )
+            if (char.IsDigit(e.KeyChar))
             {
                 e.Handled = false;
             }

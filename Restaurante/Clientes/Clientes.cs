@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Restaurante.Clientes
 {
@@ -45,13 +39,13 @@ namespace Restaurante.Clientes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(txtnombre.Text == "" || txtapellido.Text == "" || txttelefono.Text == "" )
+            if (txtnombre.Text == "" || txtapellido.Text == "" || txttelefono.Text == "")
             {
                 MessageBox.Show("Por favor llene todos los campos.");
                 return;
             }
             //programa el boton para que ingrese los registros de los textbox a la tabla Clientes
-            string nombre = txtnombre.Text; 
+            string nombre = txtnombre.Text;
             string apellido = txtapellido.Text;
             string direccion = txtdireccion.Text;
             int telefono = int.Parse(txttelefono.Text);
@@ -63,7 +57,7 @@ namespace Restaurante.Clientes
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 conexion.Open();
-                using(SqlCommand cmd = new SqlCommand(query, conexion))
+                using (SqlCommand cmd = new SqlCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@nombre", nombre);
                     cmd.Parameters.AddWithValue("@apellido", apellido);
@@ -98,37 +92,10 @@ namespace Restaurante.Clientes
         private void txttelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             //valida que solo se ingresen numeros en el textbox de telefono
-            if (char.IsNumber(e.KeyChar))
+            if (e.KeyChar == Convert.ToChar(Keys.Tab) || e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                e.Handled = false;
+                txtdireccion.Focus();
             }
-            else if (char.IsControl(e.KeyChar))
-            {
-
-                e.Handled = false;
-            }
-            else if (char.IsControl(e.KeyChar)) 
-            {
-                e.Handled = false;
-            }
-            else if (char.IsSeparator(e.KeyChar)) 
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
-            //valida que no se ingresen mas de 8 numeros en el textbox de telefono
-            if (txttelefono.Text.Length == 8)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtrtn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // valida que solo se ingresen numeros en el textbox de rtn
             if (char.IsNumber(e.KeyChar))
             {
                 e.Handled = false;
@@ -149,6 +116,66 @@ namespace Restaurante.Clientes
             else
             {
                 e.Handled = true;
+            }
+            //valida que no se ingresen mas de 8 numeros en el textbox de telefono
+            if (txttelefono.Text.Length == 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtrtn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // valida que solo se ingresen numeros en el textbox de rtn
+            if (e.KeyChar == Convert.ToChar(Keys.Tab) || e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                button1_Click(sender, e);
+            }
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txtnombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Tab) || e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                txtapellido.Focus();
+            }
+        }
+
+        private void txtapellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Tab) || e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                txttelefono.Focus();
+            }
+        }
+
+        private void txtdireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Tab) || e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                txtrtn.Focus();
             }
         }
     }

@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient; // Librería para conectarse a SQL Server
-using System.Data.SqlTypes;  // Librería para usar tipos de datos de SQL Server
+using System.Windows.Forms;
 
 namespace Restaurante.Proveedores
 {
@@ -30,10 +23,6 @@ namespace Restaurante.Proveedores
                 dataAdapter.Fill(dataTable);
                 dgv1.DataSource = dataTable;
 
-                cbbus.Items.Add("ID");
-                cbbus.Items.Add("Nombre de contacto");
-                cbbus.Items.Add("Proveedor");
-                cbbus.SelectedIndex = 0;
                 dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             }
@@ -41,24 +30,9 @@ namespace Restaurante.Proveedores
 
         private void btnbus_Click(object sender, EventArgs e)
         {
-            // Buscar proveedores utilizando el campo seleccionado en el combobox y el texto ingresado en el textbox
-            // compara los resultados del combobox con los campos de la tabla proveedores
-            string selectedOption = cbbus.SelectedItem.ToString();
-            string aaaa = "";
-
-            if (selectedOption == "ID")
-            {
-                aaaa = "id_proveedor";
-            }
-            else if (selectedOption == "Nombre de contacto")
-            {
-                aaaa = "nombre_contacto";
-            }
-            else if (selectedOption == "Proveedor")
-            {
-                aaaa = "nombre_proveedor";
-            }
-            string query = "select * from proveedores where " + aaaa + " like '%" + txtbus.Text + "%'";
+            //hace una busqueda por id, nombre de contacto o nombre de proveedor
+            string query = "select * from proveedores where id_proveedor like '%" + txtbus.Text + "%' OR nombre_proveedor like '%" +
+                txtbus.Text + "%' OR nombre_contacto like '%" + txtbus.Text + "%'";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 conexion.Open();
@@ -66,10 +40,9 @@ namespace Restaurante.Proveedores
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
                 dgv1.DataSource = dataTable;
-                dgv1.Columns.Remove("disponible");
             }
 
-            
+
 
         }
 
@@ -85,13 +58,27 @@ namespace Restaurante.Proveedores
 
         private void btneditar_Click(object sender, EventArgs e)
         {
-           editar_proveedores editar = new editar_proveedores();
-            editar.Show();
+            Program.permiso = "proveedores";
+            Usuarios.usuarios us = new Usuarios.usuarios();
+            us.Show();
         }
 
         private void btnactu_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
             cargardatos();
+        }
+
+        private void txtbus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                btnbus_Click(sender, e);
+            }
         }
     }
 }

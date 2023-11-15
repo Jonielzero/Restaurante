@@ -159,11 +159,12 @@
             this.cbmes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbmes.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cbmes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbmes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbmes.ForeColor = System.Drawing.SystemColors.Window;
             this.cbmes.FormattingEnabled = true;
-            this.cbmes.Location = new System.Drawing.Point(339, 15);
+            this.cbmes.Location = new System.Drawing.Point(339, 12);
             this.cbmes.Name = "cbmes";
-            this.cbmes.Size = new System.Drawing.Size(162, 21);
+            this.cbmes.Size = new System.Drawing.Size(162, 24);
             this.cbmes.TabIndex = 6;
             this.cbmes.Click += new System.EventHandler(this.cbmes_Click);
             // 
@@ -172,11 +173,12 @@
             this.cbbus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbbus.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cbbus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbbus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbus.ForeColor = System.Drawing.SystemColors.Window;
             this.cbbus.FormattingEnabled = true;
-            this.cbbus.Location = new System.Drawing.Point(171, 15);
+            this.cbbus.Location = new System.Drawing.Point(171, 12);
             this.cbbus.Name = "cbbus";
-            this.cbbus.Size = new System.Drawing.Size(162, 21);
+            this.cbbus.Size = new System.Drawing.Size(162, 24);
             this.cbbus.TabIndex = 4;
             this.cbbus.Click += new System.EventHandler(this.cbbus_Click);
             // 
@@ -212,9 +214,10 @@
             // 
             this.txtano.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtano.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtano.Location = new System.Drawing.Point(507, 16);
+            this.txtano.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtano.Location = new System.Drawing.Point(507, 14);
             this.txtano.Name = "txtano";
-            this.txtano.Size = new System.Drawing.Size(95, 20);
+            this.txtano.Size = new System.Drawing.Size(95, 22);
             this.txtano.TabIndex = 8;
             this.txtano.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtano_KeyPress);
             // 

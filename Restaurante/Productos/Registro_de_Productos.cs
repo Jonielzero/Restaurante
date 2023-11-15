@@ -32,11 +32,7 @@ namespace Restaurante
                 dataAdapter.Fill(dataTable);
 
                 dgv1.DataSource = dataTable;
-                // Configurar el ComboBox de opciones de búsqueda
-                cbbus.Items.Add("ID");
-                cbbus.Items.Add("Nombre");
-                cbbus.Items.Add("Proveedor");
-                cbbus.SelectedIndex = 0; // Opción predeterminada
+
                 //hace que la columna precio se muestre con formato de moneda   
                 dgv1.Columns["precio"].DefaultCellStyle.Format = "c";
                 // hace que el datagridview sea responsivo
@@ -51,27 +47,12 @@ namespace Restaurante
 
         private void btnbus_Click(object sender, EventArgs e)
         {
-            // Buscar proveedores utilizando el campo seleccionado en el combobox y el texto ingresado en el textbox
-            // compara los resultados del combobox con los campos de la tabla proveedores
-            string selectedOption = cbbus.SelectedItem.ToString();
-            string aaaa = "";
 
-            if (selectedOption == "ID")
-            {
-                aaaa = "i.id_producto";
-            }
-            else if (selectedOption == "Nombre")
-            {
-                aaaa = "i.nombre_producto";
-            }
-            else if (selectedOption == "Proveedor")
-            {
-                aaaa = "p.nombre_proveedor";
-            }
             string query = "SELECT i.id_producto, i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, " +
                 "i.f_vencimiento, p.nombre_proveedor FROM productos i " +
                 "JOIN proveedores p on i.proveedor = p.id_proveedor " +
-                "WHERE " + aaaa + " like '%" + txtbus.Text + "%'" +
+                "WHERE i.id_producto like '%" + txtbus.Text + "%' OR i.nombre_producto like '%" + txtbus.Text +
+                "%' OR p.nombre_proveedor like '%" + txtbus.Text + "%' " +
                 "ORDER BY id_producto DESC";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
@@ -88,11 +69,25 @@ namespace Restaurante
 
         private void btneditar_Click(object sender, EventArgs e)
         {
-            editarproducto editp = new editarproducto();
-            editp.Show();
+            Program.permiso = "producto";
+            Usuarios.usuarios us = new Usuarios.usuarios();
+            us.Show();
         }
 
         private void btnactu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtbus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                btnbus_Click(sender, e);
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
             cargar();
         }

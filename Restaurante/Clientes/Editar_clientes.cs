@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Restaurante.Clientes
 {
@@ -114,8 +106,8 @@ namespace Restaurante.Clientes
 
         private void button3_Click(object sender, EventArgs e)
         {
-            try 
-            { 
+            try
+            {
 
                 int id = int.Parse(txtid.Text);
                 string query = "DELETE FROM clientes WHERE idclientes = @ID";

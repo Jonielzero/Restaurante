@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Restaurante.Clientes
 {
@@ -31,12 +25,7 @@ namespace Restaurante.Clientes
                     dgv1.DataSource = table;
                     //responsivo
                     dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    cbbus.Items.Add("ID");
-                    cbbus.Items.Add("Nombre");
-                    cbbus.Items.Add("Apellido");
-                    cbbus.Items.Add("Direccion");
 
-                    cbbus.SelectedIndex = 1;
                 }
             }
         }
@@ -47,32 +36,17 @@ namespace Restaurante.Clientes
 
         private void btneditar_Click(object sender, EventArgs e)
         {
-            Editar_clientes editar = new Editar_clientes();
-            editar.Show();
+
+            Program.permiso = "cliente";
+            Usuarios.usuarios usuarios = new Usuarios.usuarios();
+            usuarios.Show();
         }
 
         private void btnbus_Click(object sender, EventArgs e)
         {
-            string selectedOption = cbbus.SelectedItem.ToString();
-            string aaaa = "";
 
-            if (selectedOption == "ID")
-            {
-                aaaa = "idclientes";
-            }
-            else if (selectedOption == "Nombre")
-            {
-                aaaa = "nombre";
-            }
-            else if (selectedOption == "Apellido")
-            {
-                aaaa = "apellido";
-            }
-            else if (selectedOption == "Direccion")
-            {
-                aaaa = "direccion";
-            }
-            string query = "select * from clientes where " + aaaa + " like '%" + txtbus.Text + "%'";
+            string query = "select * from clientes where idclientes like '%" + txtbus.Text + "%' OR nombre like '%" +
+                            txtbus.Text + "%' OR apellido like '%" + txtbus.Text + "%' OR direccion like '%" + txtbus.Text + "%'";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 conexion.Open();
@@ -97,6 +71,11 @@ namespace Restaurante.Clientes
         }
 
         private void btnactu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
             cargardatos();
         }
