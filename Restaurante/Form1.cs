@@ -11,7 +11,9 @@ namespace Restaurante
             InitializeComponent();
 
         }
-        private agregarproducto formSecundario;
+    }
+}
+       /* private agregarproducto formSecundario;
         private Proveedores.Proveedores provdiv;
         private Clientes.Clientes clidiv;
         private Ventas.ventas ventdiv;
@@ -51,7 +53,7 @@ namespace Restaurante
             if (formSecundario == null || formSecundario.IsDisposed || provdiv == null || provdiv.IsDisposed || ventdiv == null || ventdiv.IsDisposed || clidiv == null || clidiv.IsDisposed)
             {
                 clidiv = new Clientes.Clientes();
-                ventdiv = new Ventas.ventas();
+                //ventdiv = new Ventas.ventas(this);
                 provdiv = new Proveedores.Proveedores();
                 formSecundario = new agregarproducto();
                 formSecundario.FormBorderStyle = FormBorderStyle.None;
@@ -84,7 +86,7 @@ namespace Restaurante
             if (provdiv == null || provdiv.IsDisposed || formSecundario == null || formSecundario.IsDisposed || ventdiv == null || ventdiv.IsDisposed || clidiv == null || clidiv.IsDisposed)
             {
                 clidiv = new Clientes.Clientes();
-                ventdiv = new Ventas.ventas();
+                //ventdiv = new Ventas.ventas();
                 formSecundario = new agregarproducto();
                 provdiv = new Proveedores.Proveedores();
                 provdiv.FormBorderStyle = FormBorderStyle.None;
@@ -108,7 +110,7 @@ namespace Restaurante
             //programa que el boton vaya a clientes de la misma manera que estan programados los demas botones
             if (clidiv == null || clidiv.IsDisposed || formSecundario == null || formSecundario.IsDisposed || ventdiv == null || ventdiv.IsDisposed || provdiv == null || provdiv.IsDisposed)
             {
-                ventdiv = new Ventas.ventas();
+               // ventdiv = new Ventas.ventas();
                 provdiv = new Proveedores.Proveedores();
                 formSecundario = new agregarproducto();
                 clidiv = new Clientes.Clientes();
@@ -134,7 +136,7 @@ namespace Restaurante
                 clidiv = new Clientes.Clientes();
                 provdiv = new Proveedores.Proveedores();
                 formSecundario = new agregarproducto();
-                ventdiv = new Ventas.ventas();
+               // ventdiv = new Ventas.ventas();
                 ventdiv.FormBorderStyle = FormBorderStyle.None;
                 ventdiv.TopLevel = false;
                 ventdiv.TopLevel = false;
@@ -155,4 +157,4 @@ namespace Restaurante
             contra.Show();
         }
     }
-}
+}*/

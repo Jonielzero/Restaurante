@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+          /*  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Ventas = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnclientes = new System.Windows.Forms.Button();
@@ -168,7 +168,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);*/
             this.ResumeLayout(false);
 
         }

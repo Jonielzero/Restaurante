@@ -7,7 +7,7 @@ namespace Restaurante
     internal static class Program
     {
         public static string permiso = "";
-        public static string connectionString = "Data Source=DESKTOP-DRUTTH1;Initial Catalog=Restaurante;User ID=Restaurante;Password=marlon123";
+        public static string connectionString = "Data Source=DESKTOP-JONIEL;Initial Catalog=Restaurante;User ID=Restaurante;Password=Marlon1234";
 
         /// <summary>
         /// Punto de entrada principal para la aplicación.
@@ -17,7 +17,7 @@ namespace Restaurante
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form3());
 
 
             using (SqlConnection conexion = new SqlConnection(connectionString))

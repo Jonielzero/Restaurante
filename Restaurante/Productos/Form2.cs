@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Restaurante.Clases;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Restaurante
@@ -11,7 +13,83 @@ namespace Restaurante
         {
             InitializeComponent();
         }
+        private void LoadTheme()
+        {
+            foreach (Control btns in panel1.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
 
+            foreach (Control cbs in panel1.Controls)
+            {
+                if (cbs.GetType() == typeof(ComboBox))
+                {
+                    ComboBox cb = (ComboBox)cbs;
+                    cb.BackColor = ThemeColor.SecondaryColor;
+                    cb.ForeColor = Color.White;
+                }
+            }
+            foreach (Control lbs in panel1.Controls)
+            {
+                if (lbs.GetType() == typeof(Label))
+                {
+                    Label lbl = (Label)lbs;
+                    lbl.ForeColor = Color.White;
+                    lbl.Font = Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                }
+
+
+            }
+            foreach (Control dgvs in panel1.Controls)
+            {
+                if (dgvs.GetType() == typeof(DataGridView))
+                {
+                    DataGridView dgv = (DataGridView)dgvs;
+                    dgv.BackgroundColor = ThemeColor.SecondaryColor;
+                    dgv.GridColor = ThemeColor.PrimaryColor;
+                    dgv.ForeColor = Color.White;
+                    //System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+                    dgv.AlternatingRowsDefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.White;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+                    dgv.DefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.DefaultCellStyle.ForeColor = Color.White;
+                    dgv.DefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+                }
+            }
+
+            foreach (Control tbs in panel1.Controls)
+            {
+                if (tbs.GetType() == typeof(TextBox))
+                {
+                    TextBox tb = (TextBox)tbs;
+                    tb.BackColor = ThemeColor.SecondaryColor;
+                    tb.ForeColor = Color.White;
+
+                }
+            }
+            foreach (Control dtps in panel1.Controls)
+            {
+                if (dtps.GetType() == typeof(DateTimePicker))
+                {
+                    DateTimePicker dtp = (DateTimePicker)dtps;
+                    dtp.CalendarMonthBackground = ThemeColor.SecondaryColor;
+                    dtp.CalendarForeColor = Color.White;
+
+                }
+            }
+
+
+        }
         private void label6_Click(object sender, EventArgs e)
         {
 
@@ -23,7 +101,7 @@ namespace Restaurante
         private DataTable dataTable;
         private void CargarDatos()
         {
-            string query2 = "SELECT i.id_producto, i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, " +
+            string query2 = "SELECT i.id_producto, i.nombre_producto, i.codigo_barras, i.precio, i.cantidad, i.f_elaboracion, " +
                 "i.f_vencimiento, p.nombre_proveedor FROM productos i " +
                 "JOIN proveedores p on i.proveedor = p.id_proveedor " +
                 "ORDER BY id_producto DESC";
@@ -79,6 +157,7 @@ namespace Restaurante
             DateTime fechaelaboracion = dtpelaboracion.Value;
             DateTime fechavencimiento = dtpvencimiento.Value;
             int proveedor = proveedorid.ID;
+            string codigo = txtcodigo.Text;
 
             if (string.IsNullOrWhiteSpace(txtnombre.Text) || cantidad == 0 || precio == 0)
             {
@@ -87,8 +166,8 @@ namespace Restaurante
             else
             {
                 // insercion mediante sql
-                string insertQuery = "INSERT INTO Productos (nombre_producto, precio, cantidad, f_elaboracion, f_vencimiento, proveedor) " +
-                                     "VALUES (@nombre_producto, @precio, @cantidad, @f_elaboracion, @f_vencimiento, @proveedor)";
+                string insertQuery = "INSERT INTO Productos (nombre_producto, precio, cantidad, f_elaboracion, f_vencimiento, proveedor, codigo_barras) " +
+                                     "VALUES (@nombre_producto, @precio, @cantidad, @f_elaboracion, @f_vencimiento, @proveedor, @codigo)";
 
                 using (SqlConnection conexion = new SqlConnection(Program.connectionString))
                 {
@@ -108,6 +187,7 @@ namespace Restaurante
                             command.Parameters.AddWithValue("@f_elaboracion", fechaelaboracion);
                             command.Parameters.AddWithValue("@f_vencimiento", fechavencimiento);
                             command.Parameters.AddWithValue("@proveedor", proveedor);
+                            command.Parameters.AddWithValue("@codigo", codigo);
 
 
 
@@ -144,6 +224,7 @@ namespace Restaurante
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            LoadTheme();
             CargarDatos();
             string query1 = "select id_proveedor, nombre_proveedor from proveedores";
 

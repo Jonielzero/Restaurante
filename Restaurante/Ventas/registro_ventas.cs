@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Restaurante.Clases;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Restaurante.Ventas
 {
@@ -10,6 +12,98 @@ namespace Restaurante.Ventas
         public registro_ventas()
         {
             InitializeComponent();
+            LoadTheme();
+        }
+        private void LoadTheme()
+        {
+            foreach (Control btns in panel1.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+            foreach (Control btns in panel2.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+            foreach (Control cbs in panel2.Controls)
+            {
+                if (cbs.GetType() == typeof(ComboBox))
+                {
+                    ComboBox cb = (ComboBox)cbs;
+                    cb.BackColor = ThemeColor.SecondaryColor;
+                    cb.ForeColor = Color.White;
+                }
+            }
+            foreach (Control lbs in panel3.Controls)
+            {
+                if (lbs.GetType() == typeof(Label))
+                {
+                    Label lbl = (Label)lbs;
+                    lbl.ForeColor = ThemeColor.PrimaryColor;
+                    lbl.Font = Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                }
+            }
+            foreach (Control lbs in panel1.Controls)
+            {
+                if (lbs.GetType() == typeof(Label))
+                {
+                    Label lbl = (Label)lbs;
+                    lbl.ForeColor = ThemeColor.PrimaryColor;
+                    lbl.Font = Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                }
+            }
+            foreach (Control tbs in panel2.Controls)
+            {
+                if (tbs.GetType() == typeof(TextBox))
+                {
+                    TextBox tb = (TextBox)tbs;
+                    tb.BackColor = ThemeColor.SecondaryColor;
+                    tb.ForeColor = Color.White;
+
+                }
+            }
+            foreach (Control tbs in panel1.Controls)
+            {
+                if (tbs.GetType() == typeof(TextBox))
+                {
+                    TextBox tb = (TextBox)tbs;
+                    tb.BackColor = ThemeColor.SecondaryColor;
+                    tb.ForeColor = Color.White;
+
+                }
+            }
+            foreach (Control dgvs in panel1.Controls)
+            {
+                if (dgvs.GetType() == typeof(DataGridView))
+                {
+                    DataGridView dgv = (DataGridView)dgvs;
+                    dgv.BackgroundColor = ThemeColor.SecondaryColor;
+                    dgv.GridColor = ThemeColor.PrimaryColor;
+                    dgv.ForeColor = Color.White;
+                    //System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+                    dgv.AlternatingRowsDefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.White;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+                    dgv.DefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.DefaultCellStyle.ForeColor = Color.White;
+                    dgv.DefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+                }
+            }
         }
         private DataTable dataTable;
 

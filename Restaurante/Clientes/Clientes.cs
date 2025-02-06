@@ -1,15 +1,81 @@
-﻿using System;
+﻿using Restaurante.Clases;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Drawing;
+using Restaurante.Ventas;
 
 namespace Restaurante.Clientes
 {
     public partial class Clientes : Form
     {
-        public Clientes()
+        private Form3 formpadre;
+
+        public Clientes(Form3 padre)
         {
             InitializeComponent();
+            this.formpadre = padre;
+        }
+        private void LoadTheme()
+        {
+            foreach (Control btns in panel1.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+            foreach (Control cbs in panel1.Controls)
+            {
+                if (cbs.GetType() == typeof(ComboBox))
+                {
+                    ComboBox cb = (ComboBox)cbs;
+                    cb.BackColor = ThemeColor.SecondaryColor;
+                    cb.ForeColor = Color.White;
+                }
+            }
+            foreach (Control lbs in panel1.Controls)
+            {
+                if (lbs.GetType() == typeof(Label))
+                {
+                    Label lbl = (Label)lbs;
+                    lbl.ForeColor = Color.White;
+                    lbl.Font = Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                }
+            }
+            foreach (Control tbs in panel1.Controls)
+            {
+                if (tbs.GetType() == typeof(TextBox))
+                {
+                    TextBox tb = (TextBox)tbs;
+                    tb.BackColor = ThemeColor.SecondaryColor;
+                    tb.ForeColor = Color.White;
+
+                }
+            }
+            foreach (Control dgvs in panel1.Controls)
+            {
+                if (dgvs.GetType() == typeof(DataGridView))
+                {
+                    DataGridView dgv = (DataGridView)dgvs;
+                    dgv.BackgroundColor = ThemeColor.SecondaryColor;
+                    dgv.GridColor = ThemeColor.PrimaryColor;
+                    dgv.ForeColor = Color.White;
+                    //System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+                    dgv.AlternatingRowsDefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.White;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+                    dgv.DefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.DefaultCellStyle.ForeColor = Color.White;
+                    dgv.DefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+                }
+            }
         }
         private void cargardatos()
         {
@@ -80,13 +146,29 @@ namespace Restaurante.Clientes
 
         private void button2_Click(object sender, EventArgs e)
         {
-            registro_clientes registro = new registro_clientes();
-            registro.Show();
+            registro_clientes childForm = new registro_clientes();
+            //registro.Show();
+            Form3 form3 = new Form3();
+
+            if (form3.activeForm != null)
+            {
+                form3.activeForm.Close();
+            }
+            Panel paneldelpadre = formpadre.obtrenerpanel();
+            form3.activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            paneldelpadre.Controls.Add(childForm);
+            paneldelpadre.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
 
         private void Clientes_Load(object sender, EventArgs e)
         {
             cargardatos();
+            LoadTheme();
         }
 
         private void txttelefono_KeyPress(object sender, KeyPressEventArgs e)

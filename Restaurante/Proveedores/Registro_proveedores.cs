@@ -58,9 +58,8 @@ namespace Restaurante.Proveedores
 
         private void btneditar_Click(object sender, EventArgs e)
         {
-            Program.permiso = "proveedores";
-            Usuarios.usuarios us = new Usuarios.usuarios();
-            us.Show();
+            editar_proveedores editar = new editar_proveedores();
+            editar.Show();
         }
 
         private void btnactu_Click(object sender, EventArgs e)

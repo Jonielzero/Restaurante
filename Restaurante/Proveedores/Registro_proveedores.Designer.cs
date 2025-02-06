@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registro_proveedores));
-            this.tlp1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgv1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtbus = new System.Windows.Forms.TextBox();
@@ -39,35 +39,35 @@
             this.btneditar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.tlp1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // tlp1
+            // panel1
             // 
-            this.tlp1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tlp1.ColumnCount = 3;
-            this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
-            this.tlp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
-            this.tlp1.Controls.Add(this.dgv1, 0, 2);
-            this.tlp1.Controls.Add(this.label1, 0, 0);
-            this.tlp1.Controls.Add(this.txtbus, 0, 1);
-            this.tlp1.Controls.Add(this.btnbus, 2, 1);
-            this.tlp1.Controls.Add(this.btneditar, 2, 0);
-            this.tlp1.Controls.Add(this.tableLayoutPanel1, 1, 2);
-            this.tlp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlp1.Location = new System.Drawing.Point(0, 0);
-            this.tlp1.Name = "tlp1";
-            this.tlp1.RowCount = 4;
-            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
-            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
-            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tlp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tlp1.Size = new System.Drawing.Size(800, 450);
-            this.tlp1.TabIndex = 1;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.ColumnCount = 3;
+            this.panel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.panel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
+            this.panel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
+            this.panel1.Controls.Add(this.dgv1, 0, 2);
+            this.panel1.Controls.Add(this.label1, 0, 0);
+            this.panel1.Controls.Add(this.txtbus, 0, 1);
+            this.panel1.Controls.Add(this.btnbus, 2, 1);
+            this.panel1.Controls.Add(this.btneditar, 2, 0);
+            this.panel1.Controls.Add(this.tableLayoutPanel1, 1, 2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.RowCount = 4;
+            this.panel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
+            this.panel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
+            this.panel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.panel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.TabIndex = 1;
             // 
             // dgv1
             // 
@@ -184,14 +184,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tlp1);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Registro_proveedores";
             this.Text = "Registro_proveedores";
             this.Load += new System.EventHandler(this.Registro_proveedores_Load);
-            this.tlp1.ResumeLayout(false);
-            this.tlp1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -201,7 +202,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tlp1;
+        private System.Windows.Forms.TableLayoutPanel panel1;
         private System.Windows.Forms.DataGridView dgv1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtbus;

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Restaurante.Clases;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
+using System.Drawing;
 namespace Restaurante
 {
     public partial class Registro_de_Productos : Form
@@ -12,6 +13,66 @@ namespace Restaurante
         public Registro_de_Productos()
         {
             InitializeComponent();
+        }
+        private void LoadTheme()
+        {
+            foreach (Control btns in panel1.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+            
+            foreach (Control cbs in panel1.Controls)
+            {
+                if (cbs.GetType() == typeof(ComboBox))
+                {
+                    ComboBox cb = (ComboBox)cbs;
+                    cb.BackColor = ThemeColor.SecondaryColor;
+                    cb.ForeColor = Color.White;
+                }
+            }
+            foreach (Control lbs in panel1.Controls)
+            {
+                if (lbs.GetType() == typeof(Label))
+                {
+                    Label lbl = (Label)lbs;
+                    lbl.ForeColor = Color.White;
+                }
+            }
+            foreach (Control tbs in panel1.Controls)
+            {
+                if (tbs.GetType() == typeof(TextBox))
+                {
+                    TextBox tb = (TextBox)tbs;
+                    tb.BackColor = ThemeColor.SecondaryColor;
+                    tb.ForeColor = Color.White;
+
+                }
+            }
+            foreach (Control dgvs in panel1.Controls)
+            {
+                if (dgvs.GetType() == typeof(DataGridView))
+                {
+                    DataGridView dgv = (DataGridView)dgvs;
+                    dgv.BackgroundColor = ThemeColor.SecondaryColor;
+                    dgv.GridColor = ThemeColor.PrimaryColor;
+                    dgv.ForeColor = Color.White;
+                    //System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+                    dgv.AlternatingRowsDefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.White;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+                    dgv.DefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.DefaultCellStyle.ForeColor = Color.White;
+                    dgv.DefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+                }
+            }
         }
         private void cargar()
         {
@@ -41,7 +102,7 @@ namespace Restaurante
         }
         private void Registro_de_Productos_Load(object sender, EventArgs e)
         {
-
+            LoadTheme();
             cargar();
         }
 
@@ -69,9 +130,11 @@ namespace Restaurante
 
         private void btneditar_Click(object sender, EventArgs e)
         {
-            Program.permiso = "producto";
+            /*Program.permiso = "producto";
             Usuarios.usuarios us = new Usuarios.usuarios();
-            us.Show();
+            us.Show();*/
+            editarproducto editarproducto = new editarproducto();
+            editarproducto.Show();
         }
 
         private void btnactu_Click(object sender, EventArgs e)

@@ -1,17 +1,112 @@
-﻿using System;
+﻿using Restaurante.Clases;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
+using Restaurante._Infrastructure;
 
 namespace Restaurante.Ventas
 {
     public partial class ventas : Form
     {
-        public ventas()
+        private Form3 formpadre;
+        public ventas(Form3 padre )
         {
             InitializeComponent();
+            this.formpadre = padre;
+        }
+        private void LoadTheme()
+        {
+            foreach (Control btns in panel1.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+
+            }
+            foreach (Control btns in panel4.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+            foreach (Control cbs in panel3.Controls)
+            {
+                if (cbs.GetType() == typeof(ComboBox))
+                {
+                    ComboBox cb = (ComboBox)cbs;
+                    cb.BackColor = ThemeColor.SecondaryColor;
+                    cb.ForeColor = Color.White;
+                }
+            }
+            foreach (Control tbs in panel3.Controls)
+            {
+                if (tbs.GetType() == typeof(TextBox))
+                {
+                    TextBox tb = (TextBox)tbs;
+                    tb.BackColor = ThemeColor.SecondaryColor;
+                    tb.ForeColor = Color.White;
+                }
+            }
+            foreach (Control dgvs in panel5.Controls)
+            {
+                if (dgvs.GetType() == typeof(DataGridView))
+                {
+                    DataGridView dgv = (DataGridView)dgvs;
+                    dgv.BackgroundColor = ThemeColor.SecondaryColor;
+                    dgv.GridColor = ThemeColor.PrimaryColor;
+                    dgv.ForeColor = Color.White;
+                    //System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+                    dgv.AlternatingRowsDefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.White;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+                    dgv.DefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.DefaultCellStyle.ForeColor = Color.White;
+                    dgv.DefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+                }
+            }
+            foreach (Control dgvs in panel1.Controls)
+            {
+                if (dgvs.GetType() == typeof(DataGridView))
+                {
+                    DataGridView dgv = (DataGridView)dgvs;
+                    dgv.BackgroundColor = ThemeColor.SecondaryColor;
+                    dgv.GridColor = ThemeColor.PrimaryColor;
+                    dgv.ForeColor = Color.White;
+                   // System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+                    dgv.AlternatingRowsDefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.White;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+                    dgv.DefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+                    dgv.DefaultCellStyle.ForeColor = Color.White;
+                    dgv.DefaultCellStyle.SelectionBackColor = ThemeColor.SecondaryColor;
+                    dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+                }
+            }
+           /* foreach (Control lbs in panelc.Controls)
+            {
+                if (lbs.GetType() == typeof(Label))
+                {
+                    Label lbl = (Label)lbs;
+                    lbl.ForeColor = ThemeColor.PrimaryColor;
+                    lbl.Font = Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                }
+            }*/
         }
         private DataTable dataTable;
         private void CargarDatos()
@@ -40,12 +135,13 @@ namespace Restaurante.Ventas
                 dataGridView1.Columns["total"].HeaderText = "Total";
                 dataGridView1.Columns["nombre_producto"].HeaderText = "Producto";
                 dataGridView1.Columns["precio"].DefaultCellStyle.Format = "C";
-                dataGridView1.Columns["idventas"].DefaultCellStyle.Format = "C";
+                dataGridView1.Columns["idventas"].DefaultCellStyle.Format = "N0";
             }
             cbproducto.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbproducto.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbcliente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbcliente.AutoCompleteSource = AutoCompleteSource.ListItems;
+
         }
         public class Venta
         {
@@ -212,10 +308,13 @@ namespace Restaurante.Ventas
         {
             ventasTemporales.Clear();
             MostrarVentasEnGridView();
+            txtCodigo.Focus();
         }
         private void ventas_Load(object sender, EventArgs e)
         {
             CargarDatos();
+            txtCodigo.Focus();
+            LoadTheme();
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 string query1 = "select id_producto, nombre_producto from productos";
@@ -313,12 +412,13 @@ namespace Restaurante.Ventas
 
             }
             dataGridViewVentas.ReadOnly = true;
-
+            limpiarcampos();
         }
 
         private void btnaceptar_Click(object sender, EventArgs e)
         {
             AgregarProducto();
+            
         }
 
         private void txtprecio_KeyPress(object sender, KeyPressEventArgs e)
@@ -362,6 +462,7 @@ namespace Restaurante.Ventas
                 MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+
         }
 
         private void cbproducto_SelectedIndexChanged(object sender, EventArgs e)
@@ -373,6 +474,7 @@ namespace Restaurante.Ventas
         {
             //desplegar combo box
             cbproducto.DroppedDown = true;
+
 
         }
 
@@ -427,13 +529,67 @@ namespace Restaurante.Ventas
         {
             cbcliente.DroppedDown = true;
         }
-        private void limpiarCampos()
+
+        private void BuscarProductoNuevo()
         {
-            cbproducto.SelectedIndex = -1;
+            using (var context = new RestauranteContext())
+            {
+                var producto = context.Productos.FirstOrDefault(f => f.CodigoBarra == txtCodigo.Text.Trim());
+                if (producto == null) return;
+                txtprecio.Text = "";
+                txtprecio.Text = producto.Precio.ToString();
+                txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("N2");
+                cbproducto.Items.Clear();
+                string nombreProducto = producto.Nombre;
+                int idProducto = producto.Id;
+                cbproducto.Items.Add(new getProductos { ID = idProducto, Nombre = nombreProducto });
+                cbproducto.SelectedIndex = 0;
+                txtCodigo.Focus();
+                txtCodigo.SelectAll();
+                int cantidad = int.Parse(txtcantidad.Text);
+                cantidad++;
+                txtcantidad.Text = cantidad.ToString();
+            }
+        }
+
+        private void cargarcodigo()
+        {
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                string query = $"SELECT id_producto, nombre_producto, precio FROM productos WHERE codigo_barras = '{txtCodigo.Text.Trim()}' ";
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand(query, conexion);
+               // cmd.Parameters.AddWithValue("@Codigo", txtCodigo.Text);  
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    txtprecio.Text = "";
+                    txtprecio.Text = reader["precio"].ToString();
+                    txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("N2");
+                    cbproducto.Items.Clear();
+                    string nombreProducto = reader["nombre_producto"].ToString();
+                    int idProducto = int.Parse(reader["id_producto"].ToString());
+                    cbproducto.Items.Add(new getProductos { ID = idProducto, Nombre = nombreProducto });
+                    cbproducto.SelectedIndex = 0;
+                    
+                }
+                conexion.Close();
+            }
+            txtCodigo.Focus();
+            txtCodigo.SelectAll();
+            int cantidad = int.Parse(txtcantidad.Text);
+            cantidad++;
+            txtcantidad.Text = cantidad.ToString();
+        }
+        private void limpiarcampos()
+        {
+            txtCodigo.Clear();
+            txtprecio.Clear();
+            txtcantidad.Text = $"{0}";
             cbcliente.SelectedIndex = 0;
-            txtprecio.Text = "";
-            txtcantidad.Text = "";
-            txtdescripcion.Text = "";
+            cbproducto.SelectedIndex = -1;
+            txtCodigo.Focus() ;
         }
 
         private void btnlimpiar_Click(object sender, EventArgs e)
@@ -476,8 +632,22 @@ namespace Restaurante.Ventas
 
         private void btnregistro_Click(object sender, EventArgs e)
         {
-            registro_ventas registro = new registro_ventas();
-            registro.Show();
+            registro_ventas childForm = new registro_ventas();
+            Form3 form3 = new Form3();
+            
+            if (form3.activeForm != null)
+            {
+                form3.activeForm.Close();
+            }
+            Panel paneldelpadre = formpadre.obtrenerpanel();
+            form3.activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            paneldelpadre.Controls.Add(childForm);
+            paneldelpadre.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
 
         private void cbproducto_DropDownClosed(object sender, EventArgs e)
@@ -495,6 +665,27 @@ namespace Restaurante.Ventas
         private void txtprecio_Click(object sender, EventArgs e)
         {
             txtprecio.Select(0, txtprecio.Text.Length);
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                cargarcodigo();
+                //BuscarProductoNuevo();
+
+            }
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                AgregarProducto();
+                limpiarcampos();
+            }
+        }
+
+        private void btnaceptar_Enter(object sender, EventArgs e)
+        {
+            
         }
     }
 }

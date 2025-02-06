@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Restaurante.Clases;
+using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Restaurante.Clientes
 {
@@ -9,6 +11,54 @@ namespace Restaurante.Clientes
         public Editar_clientes()
         {
             InitializeComponent();
+        }
+        private void LoadTheme()
+        {
+            foreach (Control btns in panel1.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+
+            foreach (Control cbs in panel1.Controls)
+            {
+                if (cbs.GetType() == typeof(ComboBox))
+                {
+                    ComboBox cb = (ComboBox)cbs;
+                    cb.BackColor = ThemeColor.SecondaryColor;
+                    cb.ForeColor = Color.White;
+                }
+            }
+            foreach (Control lbs in panel1.Controls)
+            {
+                if (lbs.GetType() == typeof(Label))
+                {
+                    Label lbl = (Label)lbs;
+                    lbl.ForeColor = Color.White;
+                    lbl.Font = Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                }
+
+
+            }
+           
+            foreach (Control tbs in panel1.Controls)
+            {
+                if (tbs.GetType() == typeof(TextBox))
+                {
+                    TextBox tb = (TextBox)tbs;
+                    tb.BackColor = ThemeColor.SecondaryColor;
+                    tb.ForeColor = Color.White;
+
+                }
+            }
+
+            
         }
         private void limpiar()
         {
@@ -21,6 +71,7 @@ namespace Restaurante.Clientes
         }
         private void CargarDatos()
         {
+            
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
                 string query = "SELECT nombre, apellido, telefono, direccion, RTN FROM clientes WHERE idclientes = @nombre ";
@@ -173,6 +224,11 @@ namespace Restaurante.Clientes
             {
                 CargarDatos();
             }
+        }
+
+        private void Editar_clientes_Load(object sender, EventArgs e)
+        {
+            LoadTheme();
         }
     }
 }
