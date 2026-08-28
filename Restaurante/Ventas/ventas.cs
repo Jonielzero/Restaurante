@@ -312,53 +312,60 @@ namespace Restaurante.Ventas
         }
         private void ventas_Load(object sender, EventArgs e)
         {
-            CargarDatos();
-            txtCodigo.Focus();
-            LoadTheme();
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            try
             {
-                string query1 = "select id_producto, nombre_producto from productos";
-                string query2 = "select idclientes, nombre from clientes";
-
-                conexion.Open();
-                using (SqlCommand command = new SqlCommand(query1, conexion))
+                CargarDatos();
+                txtCodigo.Focus();
+                LoadTheme();
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
                 {
-                    SqlDataReader reader = command.ExecuteReader();
+                    string query1 = "select id_producto, nombre_producto from productos";
+                    string query2 = "select idclientes, nombre from clientes";
 
-                    while (reader.Read())
+                    conexion.Open();
+                    using (SqlCommand command = new SqlCommand(query1, conexion))
                     {
-                        int idProducto = (int)reader["id_producto"];
-                        string nombreProducto = reader["nombre_producto"].ToString();
+                        SqlDataReader reader = command.ExecuteReader();
 
-                        cbproducto.Items.Add(new getProductos { ID = idProducto, Nombre = nombreProducto });
+                        while (reader.Read())
+                        {
+                            int idProducto = (int)reader["id_producto"];
+                            string nombreProducto = reader["nombre_producto"].ToString();
 
+                            cbproducto.Items.Add(new getProductos { ID = idProducto, Nombre = nombreProducto });
+
+                        }
+
+                        reader.Close();
+                    }
+                    using (SqlCommand command = new SqlCommand(query2, conexion))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int idCliente = (int)reader["idclientes"];
+                            string nombreCliente = reader["nombre"].ToString();
+
+                            cbcliente.Items.Add(new getClientes { ID = idCliente, Nombre = nombreCliente });
+
+                        }
+
+                        reader.Close();
                     }
 
-                    reader.Close();
-                }
-                using (SqlCommand command = new SqlCommand(query2, conexion))
-                {
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        int idCliente = (int)reader["idclientes"];
-                        string nombreCliente = reader["nombre"].ToString();
-
-                        cbcliente.Items.Add(new getClientes { ID = idCliente, Nombre = nombreCliente });
-
-                    }
-
-                    reader.Close();
                 }
 
+                cbproducto.DisplayMember = "Nombre";
+                cbproducto.ValueMember = "ID";
+                cbcliente.DisplayMember = "Nombre";
+                cbcliente.ValueMember = "ID";
+                cbcliente.SelectedIndex = 0;
             }
-
-            cbproducto.DisplayMember = "Nombre";
-            cbproducto.ValueMember = "ID";
-            cbcliente.DisplayMember = "Nombre";
-            cbcliente.ValueMember = "ID";
-            cbcliente.SelectedIndex = 0;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la solicitud: " + ex.Message);
+            }
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
@@ -417,8 +424,15 @@ namespace Restaurante.Ventas
 
         private void btnaceptar_Click(object sender, EventArgs e)
         {
-            AgregarProducto();
-            
+            try
+            {
+                AgregarProducto();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la solicitud: " + ex.Message);
+            }
+
         }
 
         private void txtprecio_KeyPress(object sender, KeyPressEventArgs e)
@@ -551,8 +565,49 @@ namespace Restaurante.Ventas
                 txtcantidad.Text = cantidad.ToString();
             }
         }
-
         private void cargarcodigo()
+        {
+            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            {
+                string query = "SELECT id_producto, nombre_producto, precio FROM productos WHERE codigo_barras = @Codigo";
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                cmd.Parameters.AddWithValue("@Codigo", txtCodigo.Text.Trim());
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        txtprecio.Text = Convert.ToDecimal(reader["precio"]).ToString("N2");
+                        int idProducto = int.Parse(reader["id_producto"].ToString());
+
+                        // En vez de Clear() + Add(), busca y selecciona el producto
+                        // dentro de la lista completa que YA está en cbproducto
+                        for (int i = 0; i < cbproducto.Items.Count; i++)
+                        {
+                            if (((getProductos)cbproducto.Items[i]).ID == idProducto)
+                            {
+                                cbproducto.SelectedIndex = i;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Código no encontrado.");
+                    }
+                }
+            }
+
+            txtCodigo.Focus();
+            txtCodigo.SelectAll();
+
+            if (int.TryParse(txtcantidad.Text, out int cantidad))
+            {
+                txtcantidad.Text = (cantidad + 1).ToString();
+            }
+        }
+        /*private void cargarcodigo()
         {
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
             {
@@ -581,7 +636,7 @@ namespace Restaurante.Ventas
             int cantidad = int.Parse(txtcantidad.Text);
             cantidad++;
             txtcantidad.Text = cantidad.ToString();
-        }
+        }*/
         private void limpiarcampos()
         {
             txtCodigo.Clear();
@@ -594,13 +649,20 @@ namespace Restaurante.Ventas
 
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
-            DialogResult result;
-            result = MessageBox.Show("Desea eliminar el producto de la lista?", "ELIMINAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            try
             {
-                EliminarLinea();
-                MessageBox.Show("Producto eliminado de la lista.");
+                DialogResult result;
+                result = MessageBox.Show("Desea eliminar el producto de la lista?", "ELIMINAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    EliminarLinea();
+                    MessageBox.Show("Producto eliminado de la lista.");
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la solicitud: " + ex.Message);
             }
 
 
@@ -608,9 +670,17 @@ namespace Restaurante.Ventas
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try 
+            { 
+
             EfectuarVenta();
             LimpiarVenta();
-        }
+             }
+        catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la solicitud: " + ex.Message);
+            }
+}
 
 
         private void dataGridViewVentas_KeyPress(object sender, KeyPressEventArgs e)
@@ -674,6 +744,11 @@ namespace Restaurante.Ventas
             {
                 cargarcodigo();
                 //BuscarProductoNuevo();
+                if (Aauto.Checked)
+                {
+                    AgregarProducto();
+                    limpiarcampos();
+                }
 
             }
             if (e.KeyChar == (char)Keys.Space)
@@ -686,6 +761,21 @@ namespace Restaurante.Ventas
         private void btnaceptar_Enter(object sender, EventArgs e)
         {
             
+        }
+
+        private void Aauto_CheckedChanged(object sender)
+        {
+
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbcliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Linq;
 
 
 namespace Restaurante
@@ -20,6 +22,11 @@ namespace Restaurante
         {
             InitializeComponent();
             random = new Random();
+            ActualizarFechaHora();
+            MostrarSaludo();
+            
+            EstilizarEtiquetas();
+            CargarImagenAleatoria();
         }
         private Color SelectThemeColor()
         {
@@ -63,6 +70,36 @@ namespace Restaurante
                 }
             }
         }
+        private void CargarImagenAleatoria()
+        {
+            string carpeta = @"C:\imagenes";
+
+            if (!Directory.Exists(carpeta))
+            {
+                MessageBox.Show("No se encontró la carpeta de imágenes: " + carpeta);
+                return;
+            }
+
+            string[] extensionesValidas = { ".jpg", ".jpeg", ".png", ".bmp" };
+            string[] imagenes = Directory.GetFiles(carpeta)
+                .Where(f => extensionesValidas.Contains(Path.GetExtension(f).ToLower()))
+                .ToArray();
+
+            if (imagenes.Length == 0)
+            {
+                MessageBox.Show("La carpeta no contiene imágenes válidas.");
+                return;
+            }
+
+            int index = random.Next(imagenes.Length);
+
+            using (var stream = new MemoryStream(File.ReadAllBytes(imagenes[index])))
+            {
+                this.BackgroundImage = Image.FromStream(stream);
+            }
+
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+        }
         public void OpenChildForm(Form childForm, object btnSender)
         {
             if (activeForm != null)
@@ -89,7 +126,7 @@ namespace Restaurante
         private void btnVentas_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Ventas.ventas(this), sender);
-            Ventas.ventas formhijo = new Ventas.ventas(this);
+           // Ventas.ventas formhijo = new Ventas.ventas(this);
         }
         public Panel obtrenerpanel()
         {
@@ -99,13 +136,13 @@ namespace Restaurante
         private void btnProductos_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Productos.agregarproducto(this), sender);
-            Productos.agregarproducto formhijo = new Productos.agregarproducto(this);
+            //Productos.agregarproducto formhijo = new Productos.agregarproducto(this);
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Clientes.Clientes(this), sender);
-            Clientes.Clientes formhijo = new Clientes.Clientes(this);
+            //Clientes.Clientes formhijo = new Clientes.Clientes(this);
         }
 
         private void btnProveedores_Click(object sender, EventArgs e)
@@ -118,6 +155,84 @@ namespace Restaurante
             //OpenChildForm(new Usuarios.usuarios(), sender);
         }
 
-       
+        private void panelLogo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+                activeForm = null;
+            }
+
+            DisableButton();
+            currentButton = null;
+            lblTitle.Text = "Home";
+        }
+        private void MostrarSaludo()
+        {
+            int hora = DateTime.Now.Hour;
+            string saludo;
+
+            if (hora < 5)
+            {
+                saludo = "Buenas noches";
+            }
+            else if (hora < 12)
+            {
+                saludo = "Buenos días";
+            }
+            else if (hora < 19)
+            {
+                saludo = "Buenas tardes";
+            }
+            else
+            {
+                saludo = "Buenas noches";
+            }
+
+            lblBienvenida.Text = $"{saludo}";
+            lblBienvenida.Font = new Font("Segoe UI Light", 18F, FontStyle.Regular);
+            lblBienvenida.ForeColor = Color.FromArgb(250, 250, 250); // gris azulado oscuro, no negro puro
+        }
+
+        private void ActualizarFechaHora()
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dddd, dd 'de' MMMM 'de' yyyy - hh:mm:ss tt",
+                new System.Globalization.CultureInfo("es-ES"));
+            //lblFechaHora.Font = new Font("Segoe UI Light", 11F, FontStyle.Regular);
+            //lblFechaHora.ForeColor = Color.White; // gris medio, discreto
+        }
+
+        private void timerReloj_Tick(object sender, EventArgs e)
+        {
+            ActualizarFechaHora(); // se refresca cada segundo, incluyendo los segundos en vivo
+        }
+
+        private void EstilizarEtiquetas()
+        {
+            lblBienvenida.BackColor = Color.FromArgb(51, 51, 76);
+            lblBienvenida.ForeColor = Color.White;
+            lblBienvenida.Padding = new Padding(15, 8, 15, 8);
+            lblBienvenida.AutoSize = true;
+
+            lblFechaHora.BackColor = Color.WhiteSmoke;
+            lblFechaHora.ForeColor = Color.Gainsboro; // gris muy claro, casi blanco — más suave que blanco puro
+            lblFechaHora.Padding = new Padding(10, 5, 10, 5);
+            lblFechaHora.AutoSize = true;
+        }
+
+        private void timerReloj_Tick_1(object sender, EventArgs e)
+        {
+            ActualizarFechaHora();
+        }
+
+        private void lblFechaHora_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -181,6 +181,7 @@
             this.cbbus.Name = "cbbus";
             this.cbbus.Size = new System.Drawing.Size(162, 24);
             this.cbbus.TabIndex = 4;
+            this.cbbus.SelectedIndexChanged += new System.EventHandler(this.cbbus_SelectedIndexChanged);
             this.cbbus.Click += new System.EventHandler(this.cbbus_Click);
             // 
             // label2

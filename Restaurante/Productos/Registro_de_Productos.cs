@@ -77,7 +77,7 @@ namespace Restaurante
         private void cargar()
         {
 
-            string query2 = "SELECT i.id_producto, i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, " +
+            string query2 = "SELECT i.id_producto, i.nombre_producto, i.precio, i.codigo_barras, i.cantidad, i.f_elaboracion, " +
                 "i.f_vencimiento, p.nombre_proveedor FROM productos i " +
                 "JOIN proveedores p on i.proveedor = p.id_proveedor " +
                 "ORDER BY id_producto DESC";
@@ -109,10 +109,10 @@ namespace Restaurante
         private void btnbus_Click(object sender, EventArgs e)
         {
 
-            string query = "SELECT i.id_producto, i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, " +
+            string query = "SELECT i.id_producto, i.nombre_producto, i.precio, i.codigo_barras, i.cantidad, i.f_elaboracion, " +
                 "i.f_vencimiento, p.nombre_proveedor FROM productos i " +
                 "JOIN proveedores p on i.proveedor = p.id_proveedor " +
-                "WHERE i.id_producto like '%" + txtbus.Text + "%' OR i.nombre_producto like '%" + txtbus.Text +
+                "WHERE i.id_producto like '%" + txtbus.Text + "%' OR i.codigo_barras like '%" + txtbus.Text + "%' OR i.nombre_producto like '%" + txtbus.Text +
                 "%' OR p.nombre_proveedor like '%" + txtbus.Text + "%' " +
                 "ORDER BY id_producto DESC";
             using (SqlConnection conexion = new SqlConnection(Program.connectionString))
@@ -153,6 +153,11 @@ namespace Restaurante
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             cargar();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

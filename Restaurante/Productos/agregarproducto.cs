@@ -123,6 +123,60 @@ namespace Restaurante.Productos
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtcantidad.Text))
+                {
+                    MessageBox.Show("Agregue una cantidad");
+                    return;
+                }
+
+                if (cbnombre.SelectedValue == null)
+                {
+                    MessageBox.Show("Seleccione un producto válido");
+                    return;
+                }
+
+                string nombre = cbnombre.SelectedValue.ToString();
+                if (!int.TryParse(txtcantidad.Text, out int cantidad))
+                {
+                    MessageBox.Show("Ingrese una cantidad numérica válida");
+                    return;
+                }
+
+                // Actualizar producto en la Base de Datos
+                string query = "UPDATE productos SET cantidad = cantidad + @agregar WHERE nombre_producto = @nombre";
+
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+                {
+                    conexion.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@agregar", cantidad);
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Se han agregado " + cantidad + " nuevos productos a " + nombre);
+                    }
+                }
+
+                // --- SOLUCIÓN AL ERROR DE CURRENCYMANAGER ---
+                // 1. Desvinculamos temporalmente el grid
+                dataGridView1.DataSource = null;
+
+                // 2. Limpiamos y recargamos la tabla de datos
+                dt.Clear();
+                cargardatos(); // Asegúrate de que cargardatos() no vuelva a instanciar 'dt' sin asignarlo
+
+                // 3. Volvemos a conectar la fuente de datos
+                dataGridView1.DataSource = dt;
+
+                txtcantidad.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la solicitud: " + ex.Message);
+            }
+            /*try
+            {
                 if (txtcantidad.Text == "")
                 {
                     MessageBox.Show("Agrege una cantidad");
@@ -155,7 +209,7 @@ namespace Restaurante.Productos
             catch
             {
                 MessageBox.Show("Seleccione un producto que agregar");
-            }
+            }*/
         }
 
 
@@ -238,5 +292,7 @@ namespace Restaurante.Productos
             childForm.BringToFront();
             childForm.Show();
         }
+
+       
     }
 }

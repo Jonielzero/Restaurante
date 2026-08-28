@@ -82,88 +82,107 @@ namespace Restaurante
         }
         private void CargarDatos()
         {
-            using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+            try
             {
-                string query = "SELECT i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, i.f_vencimiento, p.nombre_proveedor FROM productos i JOIN proveedores p ON i.proveedor = p.id_proveedor WHERE id_producto = @id ";
-                conexion.Open();
-                SqlCommand cmd = new SqlCommand(query, conexion);
-                cmd.Parameters.AddWithValue("@id", txtid.Text);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
                 {
-                    txtprecio.Text = "";
-                    txtcantidad.Text = "";
-                    txtnombre.Text = "";
-                    dtpelaboracion.Value = DateTime.Now;
-                    dtpvencimiento.Value = DateTime.Now;
-                    cbproveedores.SelectedIndex = -1;
-                    txtnombre.Text = reader["nombre_producto"].ToString();
-                    txtcantidad.Text = reader["cantidad"].ToString();
-                    dtpelaboracion.Value = Convert.ToDateTime(reader["f_elaboracion"].ToString());
-                    dtpvencimiento.Value = Convert.ToDateTime(reader["f_vencimiento"].ToString());
-                    cbproveedores.Text = reader["nombre_proveedor"].ToString();
-                    txtprecio.Text = reader["precio"].ToString();
-                    txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("N2");
+                    string query = "SELECT i.nombre_producto, i.precio, i.cantidad, i.f_elaboracion, i.f_vencimiento, i.codigo_barras, p.nombre_proveedor FROM productos i JOIN proveedores p ON i.proveedor = p.id_proveedor WHERE id_producto = @id ";
+                    conexion.Open();
+                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    cmd.Parameters.AddWithValue("@id", txtid.Text);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        txtprecio.Text = "";
+                        txtcantidad.Text = "";
+                        txtnombre.Text = "";
+                        textBoxcodigo.Text = "";
+                        dtpelaboracion.Value = DateTime.Now;
+                        dtpvencimiento.Value = DateTime.Now;
+                        cbproveedores.SelectedIndex = -1;
+                        txtnombre.Text = reader["nombre_producto"].ToString();
+                        txtcantidad.Text = reader["cantidad"].ToString();
+                        dtpelaboracion.Value = Convert.ToDateTime(reader["f_elaboracion"].ToString());
+                        dtpvencimiento.Value = Convert.ToDateTime(reader["f_vencimiento"].ToString());
+                        cbproveedores.Text = reader["nombre_proveedor"].ToString();
+                        txtprecio.Text = reader["precio"].ToString();
+                        txtprecio.Text = Convert.ToDecimal(txtprecio.Text).ToString("N2");
+                        textBoxcodigo.Text = reader["codigo_barras"].ToString();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la solicitud: " + ex.Message);
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtid.Text);
-            Proveedores proveedorid = (Proveedores)cbproveedores.SelectedItem;
-            string nombre = txtnombre.Text;
-            if (string.IsNullOrEmpty(txtprecio.Text))
+            try
             {
-                MessageBox.Show("el campo nombre no puede estar en blanco");
-                return;
-            }
-            decimal precio = decimal.Parse(txtprecio.Text);
-            int cantidad = int.Parse(txtcantidad.Text);
-            DateTime fechaelaboracion = dtpelaboracion.Value;
-            DateTime fechavencimiento = dtpvencimiento.Value;
-            int proveedor = proveedorid.ID;
-
-            if (string.IsNullOrWhiteSpace(txtnombre.Text) || cantidad == 0 || precio == 0)
-            {
-                MessageBox.Show("el campo nombre no puede estar en blanco");
-            }
-            else
-            {
-                // actuali mediante sql
-
-                string query = "UPDATE Productos SET nombre_producto = @NuevoNombre, precio = @NuevoPrecio, cantidad = @NuevaCantidad, f_elaboracion = @NuevaF_Elab, f_vencimiento = @NuevaF_venc, proveedor =@NuevoProveedor WHERE id_producto = @ID";
-                using (SqlConnection conexion = new SqlConnection(Program.connectionString))
+                int id = int.Parse(txtid.Text);
+                Proveedores proveedorid = (Proveedores)cbproveedores.SelectedItem;
+                string nombre = txtnombre.Text;
+                if (string.IsNullOrEmpty(txtprecio.Text))
                 {
+                    MessageBox.Show("el campo nombre no puede estar en blanco");
+                    return;
+                }
+                decimal precio = decimal.Parse(txtprecio.Text);
+                int cantidad = int.Parse(txtcantidad.Text);
+                DateTime fechaelaboracion = dtpelaboracion.Value;
+                DateTime fechavencimiento = dtpvencimiento.Value;
+                int proveedor = proveedorid.ID;
+                string codigo = textBoxcodigo.Text;
 
+                if (string.IsNullOrWhiteSpace(txtnombre.Text) || cantidad == 0 || precio == 0)
+                {
+                    MessageBox.Show("el campo nombre no puede estar en blanco");
+                }
+                else
+                {
+                    // actuali mediante sql
 
-                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    string query = "UPDATE Productos SET nombre_producto = @NuevoNombre, precio = @NuevoPrecio, cantidad = @NuevaCantidad, codigo_barras = @nuevocodigobarras, f_elaboracion = @NuevaF_Elab, f_vencimiento = @NuevaF_venc, proveedor =@NuevoProveedor WHERE id_producto = @ID";
+                    using (SqlConnection conexion = new SqlConnection(Program.connectionString))
                     {
-                        conexion.Open();
-                        // Agrega parámetros a la consulta para prevenir SQL injection
-                        command.Parameters.AddWithValue("@Nuevonombre", nombre);
-                        command.Parameters.AddWithValue("@NuevoPrecio", precio);
-                        command.Parameters.AddWithValue("@NuevaCantidad", cantidad);
-                        command.Parameters.AddWithValue("@Nuevaf_elab", fechaelaboracion);
-                        command.Parameters.AddWithValue("@Nuevaf_venc", fechavencimiento);
-                        command.Parameters.AddWithValue("@Nuevoproveedor", proveedor);
-                        command.Parameters.AddWithValue("@ID", id);
 
-                        int rowsAffected = command.ExecuteNonQuery();
 
-                        if (rowsAffected > 0)
+                        using (SqlCommand command = new SqlCommand(query, conexion))
                         {
-                            MessageBox.Show("Registro actualizado correctamente.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
-                        }
+                            conexion.Open();
+                            // Agrega parámetros a la consulta para prevenir SQL injection
+                            command.Parameters.AddWithValue("@Nuevonombre", nombre);
+                            command.Parameters.AddWithValue("@NuevoPrecio", precio);
+                            command.Parameters.AddWithValue("@NuevaCantidad", cantidad);
+                            command.Parameters.AddWithValue("@nuevocodigobarras", codigo);
+                            command.Parameters.AddWithValue("@Nuevaf_elab", fechaelaboracion);
+                            command.Parameters.AddWithValue("@Nuevaf_venc", fechavencimiento);
+                            command.Parameters.AddWithValue("@Nuevoproveedor", proveedor);
+                            command.Parameters.AddWithValue("@ID", id);
 
+
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Registro actualizado correctamente.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo encontrar el registro con el ID proporcionado.");
+                            }
+
+                        }
                     }
                 }
+                limpiar();
             }
-            limpiar();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar la solicitud: " + ex.Message);
+            }
         }
 
         private void editarproducto_Load(object sender, EventArgs e)
@@ -297,6 +316,11 @@ namespace Restaurante
             {
                 CargarDatos();
             }
+        }
+
+        private void txtid_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

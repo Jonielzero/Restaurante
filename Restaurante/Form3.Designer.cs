@@ -28,19 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.btnProveedores = new System.Windows.Forms.Button();
-            this.btnClientes = new System.Windows.Forms.Button();
-            this.btnProductos = new System.Windows.Forms.Button();
-            this.btnVentas = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelDesktopPanel = new System.Windows.Forms.Panel();
+            this.lblBienvenida = new System.Windows.Forms.Label();
+            this.lblFechaHora = new System.Windows.Forms.Label();
+            this.timerReloj = new System.Windows.Forms.Timer(this.components);
+            this.PicLogo = new System.Windows.Forms.PictureBox();
+            this.btnProveedores = new System.Windows.Forms.Button();
+            this.btnClientes = new System.Windows.Forms.Button();
+            this.btnProductos = new System.Windows.Forms.Button();
+            this.btnVentas = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -48,6 +55,7 @@
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(76)))));
             this.panelMenu.Controls.Add(this.btnProveedores);
             this.panelMenu.Controls.Add(this.btnClientes);
+            this.panelMenu.Controls.Add(this.lblBienvenida);
             this.panelMenu.Controls.Add(this.btnProductos);
             this.panelMenu.Controls.Add(this.btnVentas);
             this.panelMenu.Controls.Add(this.panelLogo);
@@ -56,6 +64,107 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(220, 614);
             this.panelMenu.TabIndex = 0;
+            // 
+            // panelLogo
+            // 
+            this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panelLogo.Controls.Add(this.label1);
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(220, 80);
+            this.panelLogo.TabIndex = 0;
+            this.panelLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLogo_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(191, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Restaurante Rancho Grande";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // panelTitleBar
+            // 
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.panelTitleBar.Controls.Add(this.lblFechaHora);
+            this.panelTitleBar.Controls.Add(this.lblTitle);
+            this.panelTitleBar.Controls.Add(this.PicLogo);
+            this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
+            this.panelTitleBar.Name = "panelTitleBar";
+            this.panelTitleBar.Size = new System.Drawing.Size(800, 80);
+            this.panelTitleBar.TabIndex = 1;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Mongolian Baiti", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(315, 32);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(64, 24);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Home";
+            // 
+            // panelDesktopPanel
+            // 
+            this.panelDesktopPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelDesktopPanel.BackColor = System.Drawing.Color.Transparent;
+            this.panelDesktopPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelDesktopPanel.Location = new System.Drawing.Point(220, 80);
+            this.panelDesktopPanel.Name = "panelDesktopPanel";
+            this.panelDesktopPanel.Size = new System.Drawing.Size(800, 534);
+            this.panelDesktopPanel.TabIndex = 2;
+            // 
+            // lblBienvenida
+            // 
+            this.lblBienvenida.AutoSize = true;
+            this.lblBienvenida.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblBienvenida.Location = new System.Drawing.Point(0, 601);
+            this.lblBienvenida.Name = "lblBienvenida";
+            this.lblBienvenida.Size = new System.Drawing.Size(35, 13);
+            this.lblBienvenida.TabIndex = 1;
+            this.lblBienvenida.Text = "label2";
+            this.lblBienvenida.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblFechaHora
+            // 
+            this.lblFechaHora.AutoSize = true;
+            this.lblFechaHora.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblFechaHora.Enabled = false;
+            this.lblFechaHora.Font = new System.Drawing.Font("MV Boli", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaHora.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblFechaHora.Location = new System.Drawing.Point(0, 0);
+            this.lblFechaHora.Name = "lblFechaHora";
+            this.lblFechaHora.Size = new System.Drawing.Size(48, 17);
+            this.lblFechaHora.TabIndex = 2;
+            this.lblFechaHora.Text = "label3";
+            this.lblFechaHora.Click += new System.EventHandler(this.lblFechaHora_Click);
+            // 
+            // timerReloj
+            // 
+            this.timerReloj.Enabled = true;
+            this.timerReloj.Interval = 1000;
+            this.timerReloj.Tick += new System.EventHandler(this.timerReloj_Tick_1);
+            // 
+            // PicLogo
+            // 
+            this.PicLogo.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PicLogo.Image = global::Restaurante.Properties.Resources.WhatsApp_Image_2023_08_14_at_10_40_32;
+            this.PicLogo.Location = new System.Drawing.Point(662, 0);
+            this.PicLogo.Name = "PicLogo";
+            this.PicLogo.Size = new System.Drawing.Size(138, 80);
+            this.PicLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicLogo.TabIndex = 0;
+            this.PicLogo.TabStop = false;
             // 
             // btnProveedores
             // 
@@ -130,59 +239,6 @@
             this.btnVentas.UseVisualStyleBackColor = true;
             this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             // 
-            // panelLogo
-            // 
-            this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.panelLogo.Controls.Add(this.label1);
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(220, 80);
-            this.panelLogo.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Restaurante Rancho Grande";
-            // 
-            // panelTitleBar
-            // 
-            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            this.panelTitleBar.Controls.Add(this.lblTitle);
-            this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
-            this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(800, 80);
-            this.panelTitleBar.TabIndex = 1;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Mongolian Baiti", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(315, 32);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(64, 24);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Home";
-            // 
-            // panelDesktopPanel
-            // 
-            this.panelDesktopPanel.BackgroundImage = global::Restaurante.Properties.Resources.WhatsApp_Image_2023_08_14_at_10_40_32;
-            this.panelDesktopPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelDesktopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktopPanel.Location = new System.Drawing.Point(220, 80);
-            this.panelDesktopPanel.Name = "panelDesktopPanel";
-            this.panelDesktopPanel.Size = new System.Drawing.Size(800, 534);
-            this.panelDesktopPanel.TabIndex = 2;
-            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,15 +247,18 @@
             this.Controls.Add(this.panelDesktopPanel);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "Restaurante Rancho Grande";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form3_Load);
             this.panelMenu.ResumeLayout(false);
+            this.panelMenu.PerformLayout();
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
             this.panelTitleBar.ResumeLayout(false);
             this.panelTitleBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,5 +275,9 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelDesktopPanel;
+        private System.Windows.Forms.Label lblFechaHora;
+        private System.Windows.Forms.Label lblBienvenida;
+        private System.Windows.Forms.PictureBox PicLogo;
+        private System.Windows.Forms.Timer timerReloj;
     }
 }

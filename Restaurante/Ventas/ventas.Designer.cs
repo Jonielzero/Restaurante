@@ -59,6 +59,7 @@
             this.lvtotal = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnregistro = new System.Windows.Forms.Button();
+            this.Aauto = new ReaLTaiizor.Controls.CheckBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -266,6 +267,7 @@
             this.cbcliente.Name = "cbcliente";
             this.cbcliente.Size = new System.Drawing.Size(319, 28);
             this.cbcliente.TabIndex = 2;
+            this.cbcliente.SelectedIndexChanged += new System.EventHandler(this.cbcliente_SelectedIndexChanged);
             this.cbcliente.TextChanged += new System.EventHandler(this.cbcliente_TextChanged);
             this.cbcliente.Click += new System.EventHandler(this.cbcliente_Click);
             // 
@@ -289,6 +291,7 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(319, 20);
             this.txtCodigo.TabIndex = 12;
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // panel4
@@ -298,6 +301,7 @@
             this.panel4.Controls.Add(this.btnaceptar, 0, 0);
             this.panel4.Controls.Add(this.button1, 0, 1);
             this.panel4.Controls.Add(this.btnlimpiar, 0, 2);
+            this.panel4.Controls.Add(this.Aauto, 0, 4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(387, 3);
             this.panel4.Name = "panel4";
@@ -492,6 +496,25 @@
             this.btnregistro.UseVisualStyleBackColor = false;
             this.btnregistro.Click += new System.EventHandler(this.btnregistro_Click);
             // 
+            // Aauto
+            // 
+            this.Aauto.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Aauto.Checked = true;
+            this.Aauto.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
+            this.Aauto.CheckedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
+            this.Aauto.CheckedDisabledColor = System.Drawing.Color.Gray;
+            this.Aauto.CheckedEnabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.Aauto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Aauto.Enable = true;
+            this.Aauto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.Aauto.ForeColor = System.Drawing.Color.White;
+            this.Aauto.Location = new System.Drawing.Point(3, 299);
+            this.Aauto.Name = "Aauto";
+            this.Aauto.Size = new System.Drawing.Size(59, 16);
+            this.Aauto.TabIndex = 5;
+            this.Aauto.Text = "Auto";
+            this.Aauto.CheckedChanged += new ReaLTaiizor.Controls.CheckBox.CheckedChangedEventHandler(this.Aauto_CheckedChanged);
+            // 
             // ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,5 +571,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtCodigo;
+        private ReaLTaiizor.Controls.CheckBox Aauto;
     }
 }
